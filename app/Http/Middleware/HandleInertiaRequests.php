@@ -53,6 +53,11 @@ class HandleInertiaRequests extends Middleware
                     'href' => '/donations',
                     'icon' => 'volunteer_activism',
                 ],
+                [
+                    'label' => 'Careers',
+                    'href' => '/careers',
+                    'icon' => 'work',
+                ],
             ],
         ]);
     }

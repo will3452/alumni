@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\CareerController;
 use App\Http\Controllers\DonationController;
+use App\Models\Donation;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +30,20 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
+        $total_donations = Donation::whereStatus(Donation::STATUS_APPROVED)->sum('amount');
+        try {
+            $rate_last_week = (Donation::whereStatus(Donation::STATUS_APPROVED)->whereBetween('created_at', [Carbon::now()->copy()->subWeek(), Carbon::now()])->sum('amount') / Donation::whereStatus(Donation::STATUS_APPROVED)->sum('amount')) * 100;
+        } catch (Exception $error) {
+
+            $rate_last_week = 0;
+        }
+
+        return Inertia::render('Dashboard', [
+            'statistic' => [
+                'total_donations' => $total_donations,
+                'rate_last_week' => $rate_last_week,
+            ],
+        ]);
     })->name('home');
 
     // DONATIONS
@@ -36,6 +52,16 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', [DonationController::class, 'index']);
         Route::get('/create', [DonationController::class, 'create']);
         Route::get('/{donation}', [DonationController::class, 'show']);
+    });
+
+    //CAREERS
+    Route::prefix('/careers')->name('careers.')->group(function () {
+        Route::post('/item', [CareerController::class, 'storeItem']);
+        Route::post('/item/{careerItem}', [CareerController::class, 'deleteItem']);
+        Route::post('/', [CareerController::class, 'store']);
+        Route::get('/', [CareerController::class, 'index']);
+        Route::get('/create', [CareerController::class, 'create']);
+        Route::get('/{career}', [CareerController::class, 'show']);
     });
 
 });

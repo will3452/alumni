@@ -16,12 +16,13 @@
               </div>
               <div class="card-body">
                 <form role="form" class="text-start">
-                  <div class="input-group input-group-outline my-3">
                     <label class="form-label">Email</label>
+                  <div class="input-group input-group-outline mb-3">
                     <input type="email" class="form-control" v-model="form.email">
                   </div>
+                  <label class="form-label">Password</label>
                   <div class="input-group input-group-outline mb-3">
-                    <label class="form-label">Password</label>
+
                     <input type="password" class="form-control" v-model="form.password">
                   </div>
                   <div class="text-center">

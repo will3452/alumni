@@ -24,16 +24,16 @@
                         <option value="Student">Student</option>
                       </select>
                     </div>
+                    <label class="form-label">Name</label>
                     <div class="input-group input-group-outline mb-3">
-                      <label class="form-label">Name</label>
                       <input type="text" v-model="form.name" class="form-control" :class="{'is-invalid': form.errors.name}" >
                     </div>
+                    <label class="form-label">Email</label>
                     <div class="input-group input-group-outline mb-3">
-                      <label class="form-label">Email</label>
                       <input type="email"  v-model="form.email" class="form-control" :class="{'is-invalid': form.errors.email}">
                     </div>
+                    <label class="form-label">Password</label>
                     <div class="input-group input-group-outline mb-3">
-                      <label class="form-label">Password</label>
                       <input type="password" v-model="form.password" class="form-control" :class="{'is-invalid': form.errors.password}">
                     </div>
                     <div class="form-check form-check-info text-start ps-0">
