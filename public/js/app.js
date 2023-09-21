@@ -2206,11 +2206,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Shared_MainLayout_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Shared/MainLayout.vue */ "./resources/js/Shared/MainLayout.vue");
+/* harmony import */ var short_number__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! short-number */ "./node_modules/short-number/index.js");
+/* harmony import */ var short_number__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(short_number__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Shared_MainLayout_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Shared/MainLayout.vue */ "./resources/js/Shared/MainLayout.vue");
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  layout: _Shared_MainLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-  props: ['statistic']
+  layout: _Shared_MainLayout_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+  props: ['statistic'],
+  methods: {
+    shortNumber: (short_number__WEBPACK_IMPORTED_MODULE_0___default())
+  }
 });
 
 /***/ }),
@@ -2821,9 +2827,9 @@ var render = function render() {
     staticClass: "text-end pt-1"
   }, [_c("p", {
     staticClass: "text-sm mb-0 text-capitalize"
-  }, [_vm._v("Total Donation")]), _vm._v(" "), _c("h4", {
+  }, [_vm._v("Total Donations")]), _vm._v(" "), _c("h4", {
     staticClass: "mb-0"
-  }, [_vm._v("PHP " + _vm._s(_vm.statistic.total_donation || 0))])])]), _vm._v(" "), _c("hr", {
+  }, [_vm._v("PHP " + _vm._s(_vm.shortNumber(_vm.statistic.total_donations)))])])]), _vm._v(" "), _c("hr", {
     staticClass: "dark horizontal my-0"
   }), _vm._v(" "), _c("div", {
     staticClass: "card-footer p-3"
@@ -2831,7 +2837,47 @@ var render = function render() {
     staticClass: "mb-0"
   }, [_c("span", {
     staticClass: "text-success text-sm font-weight-bolder"
-  }, [_vm._v(_vm._s(_vm.statistic.rate_last_week) + "% ")]), _vm._v("than last week")])])])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3)]), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6)])]);
+  }, [_vm._v("+ " + _vm._s(_vm.statistic.rate_last_week) + "% ")]), _vm._v("than last week")])])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-xl-3 col-sm-6 mb-xl-0 mb-4"
+  }, [_c("div", {
+    staticClass: "card"
+  }, [_c("div", {
+    staticClass: "card-header p-3 pt-2"
+  }, [_vm._m(1), _vm._v(" "), _c("div", {
+    staticClass: "text-end pt-1"
+  }, [_c("p", {
+    staticClass: "text-sm mb-0 text-capitalize"
+  }, [_vm._v("Total Users")]), _vm._v(" "), _c("h4", {
+    staticClass: "mb-0"
+  }, [_vm._v(_vm._s(_vm.statistic.total_users))])])]), _vm._v(" "), _c("hr", {
+    staticClass: "dark horizontal my-0"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "card-footer p-3"
+  }, [_c("p", {
+    staticClass: "mb-0"
+  }, [_c("span", {
+    staticClass: "text-success text-sm font-weight-bolder"
+  }, [_vm._v("+" + _vm._s(_vm.statistic.total_user_last_week.toFixed(2)) + "% ")]), _vm._v("than last week")])])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-xl-3 col-sm-6 mb-xl-0 mb-4"
+  }, [_c("div", {
+    staticClass: "card"
+  }, [_c("div", {
+    staticClass: "card-header p-3 pt-2"
+  }, [_vm._m(2), _vm._v(" "), _c("div", {
+    staticClass: "text-end pt-1"
+  }, [_c("p", {
+    staticClass: "text-sm mb-0 text-capitalize"
+  }, [_vm._v("Careers")]), _vm._v(" "), _c("h4", {
+    staticClass: "mb-0"
+  }, [_vm._v(_vm._s(_vm.statistic.total_careers))])])]), _vm._v(" "), _c("hr", {
+    staticClass: "dark horizontal my-0"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "card-footer p-3"
+  }, [_c("p", {
+    staticClass: "mb-0"
+  }, [_c("span", {
+    staticClass: "text-success text-sm font-weight-bolder"
+  }, [_vm._v("+" + _vm._s(_vm.statistic.total_careers_last_week) + "%")]), _vm._v(" than yesterday")])])])]), _vm._v(" "), _vm._m(3)]), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6)])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -2845,58 +2891,18 @@ var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "col-xl-3 col-sm-6 mb-xl-0 mb-4"
-  }, [_c("div", {
-    staticClass: "card"
-  }, [_c("div", {
-    staticClass: "card-header p-3 pt-2"
-  }, [_c("div", {
     staticClass: "icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute"
   }, [_c("i", {
     staticClass: "material-icons opacity-10"
-  }, [_vm._v("person")])]), _vm._v(" "), _c("div", {
-    staticClass: "text-end pt-1"
-  }, [_c("p", {
-    staticClass: "text-sm mb-0 text-capitalize"
-  }, [_vm._v("Today's Users")]), _vm._v(" "), _c("h4", {
-    staticClass: "mb-0"
-  }, [_vm._v("2,300")])])]), _vm._v(" "), _c("hr", {
-    staticClass: "dark horizontal my-0"
-  }), _vm._v(" "), _c("div", {
-    staticClass: "card-footer p-3"
-  }, [_c("p", {
-    staticClass: "mb-0"
-  }, [_c("span", {
-    staticClass: "text-success text-sm font-weight-bolder"
-  }, [_vm._v("+3% ")]), _vm._v("than last month")])])])]);
+  }, [_vm._v("person")])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "col-xl-3 col-sm-6 mb-xl-0 mb-4"
-  }, [_c("div", {
-    staticClass: "card"
-  }, [_c("div", {
-    staticClass: "card-header p-3 pt-2"
-  }, [_c("div", {
     staticClass: "icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute"
   }, [_c("i", {
     staticClass: "material-icons opacity-10"
-  }, [_vm._v("person")])]), _vm._v(" "), _c("div", {
-    staticClass: "text-end pt-1"
-  }, [_c("p", {
-    staticClass: "text-sm mb-0 text-capitalize"
-  }, [_vm._v("New Clients")]), _vm._v(" "), _c("h4", {
-    staticClass: "mb-0"
-  }, [_vm._v("3,462")])])]), _vm._v(" "), _c("hr", {
-    staticClass: "dark horizontal my-0"
-  }), _vm._v(" "), _c("div", {
-    staticClass: "card-footer p-3"
-  }, [_c("p", {
-    staticClass: "mb-0"
-  }, [_c("span", {
-    staticClass: "text-danger text-sm font-weight-bolder"
-  }, [_vm._v("-2%")]), _vm._v(" than yesterday")])])])]);
+  }, [_vm._v("work")])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
@@ -2910,11 +2916,11 @@ var staticRenderFns = [function () {
     staticClass: "icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute"
   }, [_c("i", {
     staticClass: "material-icons opacity-10"
-  }, [_vm._v("weekend")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("announcement")])]), _vm._v(" "), _c("div", {
     staticClass: "text-end pt-1"
   }, [_c("p", {
     staticClass: "text-sm mb-0 text-capitalize"
-  }, [_vm._v("Sales")]), _vm._v(" "), _c("h4", {
+  }, [_vm._v("Announcements")]), _vm._v(" "), _c("h4", {
     staticClass: "mb-0"
   }, [_vm._v("$103,430")])])]), _vm._v(" "), _c("hr", {
     staticClass: "dark horizontal my-0"
@@ -11782,6 +11788,66 @@ module.exports = {
     maybeMap: maybeMap,
     merge: merge
 };
+
+
+/***/ }),
+
+/***/ "./node_modules/short-number/index.js":
+/*!********************************************!*\
+  !*** ./node_modules/short-number/index.js ***!
+  \********************************************/
+/***/ (function(module) {
+
+(function (global, factory) {
+     true ? module.exports = factory() :
+    0;
+}(this, function (num) {
+    'use strict';
+
+    return function (num) {
+        if(typeof num !== 'number') {
+            throw new TypeError('Expected a number');
+        }
+
+        if(num > 1e19) {
+            throw new RangeError('Input expected to be < 1e19');
+        }
+
+        if(num < -1e19) {
+            throw new RangeError('Input expected to be > 1e19');
+        }
+
+        if(Math.abs(num) < 1000) {
+            return num;
+        }
+
+        var shortNumber;
+        var exponent;
+        var size;
+        var sign = num < 0 ? '-' : '';
+        var suffixes = {
+            'K': 6,
+            'M': 9,
+            'B': 12,
+            'T': 16
+        };
+
+        num = Math.abs(num);
+        size = Math.floor(num).toString().length;
+
+        exponent = size % 3 === 0 ? size - 3 : size - (size % 3);
+        shortNumber = Math.round(10 * (num / Math.pow(10, exponent))) / 10;
+
+        for(var suffix in suffixes) {
+            if(exponent < suffixes[suffix]) {
+                shortNumber += suffix;
+                break;
+            }
+        }
+
+        return sign + shortNumber;
+    };
+}));
 
 
 /***/ }),

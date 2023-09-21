@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\DonationController;
+use App\Models\Career;
 use App\Models\Donation;
 use App\Models\User;
 use Carbon\Carbon;
@@ -32,7 +33,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         $total_donations = Donation::whereStatus(Donation::STATUS_APPROVED)->sum('amount');
         try {
-            $rate_last_week = (Donation::whereStatus(Donation::STATUS_APPROVED)->whereBetween('created_at', [Carbon::now()->copy()->subWeek(), Carbon::now()])->sum('amount') / Donation::whereStatus(Donation::STATUS_APPROVED)->sum('amount')) * 100;
+            $rate_last_week = (Donation::whereStatus(Donation::STATUS_APPROVED)->whereBetween('updated_at', [Carbon::now()->copy()->subWeek(), Carbon::now()])->sum('amount') / Donation::whereStatus(Donation::STATUS_APPROVED)->sum('amount')) * 100;
         } catch (Exception $error) {
 
             $rate_last_week = 0;
@@ -42,6 +43,10 @@ Route::middleware(['auth'])->group(function () {
             'statistic' => [
                 'total_donations' => $total_donations,
                 'rate_last_week' => $rate_last_week,
+                'total_users' => User::count(),
+                'total_user_last_week' => (User::whereBetween('created_at', [Carbon::now()->copy()->subWeek(), Carbon::now()])->count() / User::count()) * 100,
+                'total_careers' => Career::count(),
+                'total_careers_last_week' => (Career::whereBetween('created_at', [Carbon::now()->copy()->subWeek(), Carbon::now()])->count() / Career::count()) * 100,
             ],
         ]);
     })->name('home');

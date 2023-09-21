@@ -9,13 +9,13 @@
                 <i class="material-icons opacity-10">volunteer_activism</i>
               </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Total Donation</p>
-                <h4 class="mb-0">PHP {{ (statistic.total_donation || 0)}}</h4>
+                <p class="text-sm mb-0 text-capitalize">Total Donations</p>
+                <h4 class="mb-0">PHP {{ shortNumber((statistic.total_donations)) }}</h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">{{statistic.rate_last_week}}% </span>than last week</p>
+              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+ {{statistic.rate_last_week}}% </span>than last week</p>
             </div>
           </div>
         </div>
@@ -26,13 +26,13 @@
                 <i class="material-icons opacity-10">person</i>
               </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Today's Users</p>
-                <h4 class="mb-0">2,300</h4>
+                <p class="text-sm mb-0 text-capitalize">Total Users</p>
+                <h4 class="mb-0">{{ statistic.total_users }}</h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+3% </span>than last month</p>
+              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+{{statistic.total_user_last_week.toFixed(2)}}% </span>than last week</p>
             </div>
           </div>
         </div>
@@ -40,16 +40,16 @@
           <div class="card">
             <div class="card-header p-3 pt-2">
               <div class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-                <i class="material-icons opacity-10">person</i>
+                <i class="material-icons opacity-10">work</i>
               </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">New Clients</p>
-                <h4 class="mb-0">3,462</h4>
+                <p class="text-sm mb-0 text-capitalize">Careers</p>
+                <h4 class="mb-0">{{statistic.total_careers}}</h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">-2%</span> than yesterday</p>
+              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+{{statistic.total_careers_last_week}}%</span> than yesterday</p>
             </div>
           </div>
         </div>
@@ -57,10 +57,10 @@
           <div class="card">
             <div class="card-header p-3 pt-2">
               <div class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
-                <i class="material-icons opacity-10">weekend</i>
+                <i class="material-icons opacity-10">announcement</i>
               </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Sales</p>
+                <p class="text-sm mb-0 text-capitalize">Announcements</p>
                 <h4 class="mb-0">$103,430</h4>
               </div>
             </div>
@@ -514,11 +514,15 @@
 
 
 <script>
+import shortNumber from 'short-number';
 import MainLayout from '../Shared/MainLayout.vue';
 export default {
     layout: MainLayout,
     props: [
         'statistic'
-    ]
+    ],
+    methods: {
+        shortNumber,
+    }
 }
 </script>
