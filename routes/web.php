@@ -4,6 +4,7 @@ use App\Http\Controllers\CareerController;
 use App\Http\Controllers\DonationController;
 use App\Models\Career;
 use App\Models\Donation;
+use App\Models\Done;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -48,8 +49,25 @@ Route::middleware(['auth'])->group(function () {
                 'total_careers' => Career::count(),
                 'total_careers_last_week' => (Career::whereBetween('created_at', [Carbon::now()->copy()->subWeek(), Carbon::now()])->count() / Career::count()) * 100,
             ],
+            'objectives' => auth()->user()->objectives()->with('career.items')->get(),
         ]);
     })->name('home');
+
+    // OBJECTIVES
+    Route::post('/add-objectives', function (Request $request) {
+        return auth()->user()->objectives()->create($request->all());
+
+        return redirect()->to('/dashboard');
+    });
+
+    Route::post('/mark-as-done', function (Request $request) {
+        Done::updateOrCreate([
+            'user_id' => auth()->id(),
+            'item_id' => $request->item_id,
+        ]);
+
+        return redirect()->to('/dashboard');
+    });
 
     // DONATIONS
     Route::prefix('/donations')->name('donations.')->group(function () {

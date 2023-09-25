@@ -11,6 +11,9 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $with = [
+        'doneItems',
+    ];
     /**
      * The attributes that are mass assignable.
      *
@@ -22,6 +25,16 @@ class User extends Authenticatable
         'password',
         'type',
     ];
+
+    public function objectives()
+    {
+        return $this->hasMany(Objective::class, 'user_id');
+    }
+
+    public function doneItems()
+    {
+        return $this->belongsToMany(CareerItem::class, 'dones', 'user_id', 'item_id');
+    }
 
     const TYPE_ADMIN = "Administrator";
     const TYPE_STUDENT = "Student";

@@ -2213,9 +2213,20 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   layout: _Shared_MainLayout_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-  props: ['statistic'],
+  props: ['statistic', 'objectives'],
   methods: {
-    shortNumber: (short_number__WEBPACK_IMPORTED_MODULE_0___default())
+    shortNumber: (short_number__WEBPACK_IMPORTED_MODULE_0___default()),
+    saveGoal: function saveGoal() {
+      this.form.post('/add-objectives');
+    }
+  },
+  data: function data() {
+    return {
+      form: this.$inertia.form({
+        career_id: null,
+        description: ''
+      })
+    };
   }
 });
 
@@ -2837,7 +2848,7 @@ var render = function render() {
     staticClass: "mb-0"
   }, [_c("span", {
     staticClass: "text-success text-sm font-weight-bolder"
-  }, [_vm._v("+ " + _vm._s(_vm.statistic.rate_last_week) + "% ")]), _vm._v("than last week")])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("+\n                                " + _vm._s(_vm.statistic.rate_last_week) + "% ")]), _vm._v("than last week")])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-xl-3 col-sm-6 mb-xl-0 mb-4"
   }, [_c("div", {
     staticClass: "card"
@@ -2857,7 +2868,7 @@ var render = function render() {
     staticClass: "mb-0"
   }, [_c("span", {
     staticClass: "text-success text-sm font-weight-bolder"
-  }, [_vm._v("+" + _vm._s(_vm.statistic.total_user_last_week.toFixed(2)) + "% ")]), _vm._v("than last week")])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("+" + _vm._s(_vm.statistic.total_user_last_week.toFixed(2)) + "%\n                            ")]), _vm._v("than last week")])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-xl-3 col-sm-6 mb-xl-0 mb-4"
   }, [_c("div", {
     staticClass: "card"
@@ -2877,7 +2888,174 @@ var render = function render() {
     staticClass: "mb-0"
   }, [_c("span", {
     staticClass: "text-success text-sm font-weight-bolder"
-  }, [_vm._v("+" + _vm._s(_vm.statistic.total_careers_last_week) + "%")]), _vm._v(" than yesterday")])])])]), _vm._v(" "), _vm._m(3)]), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6)])]);
+  }, [_vm._v("+" + _vm._s(_vm.statistic.total_careers_last_week) + "%")]), _vm._v("\n                            than last week")])])])]), _vm._v(" "), _vm._m(3)]), _vm._v(" "), _c("div", {
+    staticClass: "row mb-4 mt-4"
+  }, [_c("div", {
+    staticClass: "col-12"
+  }, [_c("div", {
+    staticClass: "card h-100"
+  }, [_vm._m(4), _vm._v(" "), !_vm.objectives.length ? _c("div", {
+    staticClass: "card-body p-3"
+  }, [_c("div", [_c("label", {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("Select Course")]), _vm._v(" "), _c("div", [_c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.career_id,
+      expression: "form.career_id"
+    }],
+    attrs: {
+      name: "",
+      id: ""
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.form, "career_id", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
+    }
+  }, _vm._l(_vm.$page.props.careers, function (career) {
+    return _c("option", {
+      key: career.id,
+      domProps: {
+        value: career.id
+      }
+    }, [_vm._v("\n                                        " + _vm._s(career.course) + "\n                                    ")]);
+  }), 0)])]), _vm._v(" "), _vm.form.career_id ? _c("div", {
+    staticClass: "mt-4 mb-4"
+  }, [_vm._v("\n                            Description: " + _vm._s(_vm.$page.props.careers.find(function (e) {
+    return e.id == _vm.form.career_id;
+  }).description) + "\n                        ")]) : _vm._e(), _vm._v(" "), _c("div", [_c("label", {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("Remarks")]), _vm._v(" "), _c("div", [_c("textarea", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.description,
+      expression: "form.description"
+    }],
+    staticClass: "form-control p-2",
+    staticStyle: {
+      border: "2px solid #ddd"
+    },
+    attrs: {
+      name: "",
+      id: ""
+    },
+    domProps: {
+      value: _vm.form.description
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form, "description", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-primary btn-lg mt-4",
+    on: {
+      click: _vm.saveGoal
+    }
+  }, [_c("i", {
+    staticClass: "material-icons"
+  }, [_vm._v("check")]), _vm._v(" SET GOAL NOW\n                        ")])]) : _vm._e(), _vm._v(" "), _vm.objectives.length ? _c("div", {
+    staticClass: "card-body p-3"
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-md-6"
+  }, [_c("div", {
+    staticClass: "timeline timeline-one-side"
+  }, _vm._l(_vm.objectives[0].career.items.sort(function (a, b) {
+    return a.id < b.id;
+  }), function (item) {
+    return _c("div", {
+      key: item.id,
+      staticClass: "timeline-block mb-3"
+    }, [_c("span", {
+      staticClass: "timeline-step"
+    }, [_c("i", {
+      staticClass: "material-icons text-success text-gradient"
+    }, [_vm._v(_vm._s(_vm.$page.props.user.done_items.findIndex(function (e) {
+      return e.id == item.id;
+    }) == -1 ? "lock" : "check"))])]), _vm._v(" "), _c("div", {
+      staticClass: "timeline-content"
+    }, [_c("h6", {
+      staticClass: "text-dark font-weight-bold mb-0 d-flex",
+      staticStyle: {
+        "justify-content": "space-between",
+        "align-items": "center"
+      }
+    }, [_c("span", [_vm._v(_vm._s(item.title))]), _vm._v(" "), _vm.$page.props.user.done_items.findIndex(function (e) {
+      return e.id == item.id;
+    }) == -1 ? _c("Link", {
+      staticClass: "btn btn-primary",
+      attrs: {
+        method: "POST",
+        href: "/mark-as-done",
+        data: {
+          item_id: item.id
+        },
+        "preserve-scroll": ""
+      }
+    }, [_c("i", {
+      staticClass: "material-icons"
+    }, [_vm._v("star")]), _vm._v(" UNLOCK\n                                                ")]) : _c("div", {
+      staticStyle: {
+        color: "#aaa"
+      }
+    }, [_vm._v("\n                                                    DONE\n                                                ")])], 1), _vm._v(" "), _c("p", {
+      staticClass: "text-secondary font-weight-bold text-xs mt-1 mb-0"
+    }, [_vm._v("\n                                                " + _vm._s(item.description))])])]);
+  }), 0)]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6",
+    staticStyle: {
+      display: "grid",
+      "place-items": "center"
+    }
+  }, [_c("div", {
+    staticStyle: {
+      width: "100%"
+    }
+  }, [_c("h3", {
+    staticClass: "text-center"
+  }, [_c("i", {
+    staticClass: "material-icons",
+    staticStyle: {
+      "font-size": "64px"
+    }
+  }, [_vm._v(_vm._s(_vm.$page.props.user.done_items.length / _vm.objectives[0].career.items.length * 100 == 100 ? "check" : "more_time"))])]), _vm._v(" "), _c("div", {
+    staticClass: "progress-wrapper w-75 mx-auto"
+  }, [_c("div", {
+    staticClass: "progress-info"
+  }, [_c("div", {
+    staticClass: "progress-percentage"
+  }, [_c("span", {
+    staticClass: "text-xs font-weight-bold"
+  }, [_vm._v(_vm._s(_vm.$page.props.user.done_items.length / _vm.objectives[0].career.items.length * 100) + "%")])])]), _vm._v(" "), _c("div", {
+    staticClass: "progress"
+  }, [_c("div", {
+    staticClass: "progress-bar bg-gradient-info",
+    style: {
+      width: _vm.$page.props.user.done_items.length / _vm.objectives[0].career.items.length * 100 + "%"
+    },
+    attrs: {
+      role: "progressbar",
+      "aria-valuenow": "40",
+      "aria-valuemin": "0",
+      "aria-valuemax": "40"
+    }
+  })])])])])])]) : _vm._e()])])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -2930,749 +3108,13 @@ var staticRenderFns = [function () {
     staticClass: "mb-0"
   }, [_c("span", {
     staticClass: "text-success text-sm font-weight-bolder"
-  }, [_vm._v("+5% ")]), _vm._v("than yesterday")])])])]);
+  }, [_vm._v("+5% ")]), _vm._v("than yesterday\n                        ")])])])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "row mt-4"
-  }, [_c("div", {
-    staticClass: "col-lg-4 col-md-6 mt-4 mb-4"
-  }, [_c("div", {
-    staticClass: "card z-index-2"
-  }, [_c("div", {
-    staticClass: "card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent"
-  }, [_c("div", {
-    staticClass: "bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1"
-  }, [_c("div", {
-    staticClass: "chart"
-  }, [_c("canvas", {
-    staticClass: "chart-canvas",
-    attrs: {
-      id: "chart-bars",
-      height: "170"
-    }
-  })])])]), _vm._v(" "), _c("div", {
-    staticClass: "card-body"
-  }, [_c("h6", {
-    staticClass: "mb-0"
-  }, [_vm._v("Website Views")]), _vm._v(" "), _c("p", {
-    staticClass: "text-sm"
-  }, [_vm._v("Last Campaign Performance")]), _vm._v(" "), _c("hr", {
-    staticClass: "dark horizontal"
-  }), _vm._v(" "), _c("div", {
-    staticClass: "d-flex"
-  }, [_c("i", {
-    staticClass: "material-icons text-sm my-auto me-1"
-  }, [_vm._v("schedule")]), _vm._v(" "), _c("p", {
-    staticClass: "mb-0 text-sm"
-  }, [_vm._v(" campaign sent 2 days ago ")])])])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-lg-4 col-md-6 mt-4 mb-4"
-  }, [_c("div", {
-    staticClass: "card z-index-2"
-  }, [_c("div", {
-    staticClass: "card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent"
-  }, [_c("div", {
-    staticClass: "bg-gradient-success shadow-success border-radius-lg py-3 pe-1"
-  }, [_c("div", {
-    staticClass: "chart"
-  }, [_c("canvas", {
-    staticClass: "chart-canvas",
-    attrs: {
-      id: "chart-line",
-      height: "170"
-    }
-  })])])]), _vm._v(" "), _c("div", {
-    staticClass: "card-body"
-  }, [_c("h6", {
-    staticClass: "mb-0"
-  }, [_vm._v(" Daily Sales ")]), _vm._v(" "), _c("p", {
-    staticClass: "text-sm"
-  }, [_vm._v(" ("), _c("span", {
-    staticClass: "font-weight-bolder"
-  }, [_vm._v("+15%")]), _vm._v(") increase in today sales. ")]), _vm._v(" "), _c("hr", {
-    staticClass: "dark horizontal"
-  }), _vm._v(" "), _c("div", {
-    staticClass: "d-flex"
-  }, [_c("i", {
-    staticClass: "material-icons text-sm my-auto me-1"
-  }, [_vm._v("schedule")]), _vm._v(" "), _c("p", {
-    staticClass: "mb-0 text-sm"
-  }, [_vm._v(" updated 4 min ago ")])])])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-lg-4 mt-4 mb-3"
-  }, [_c("div", {
-    staticClass: "card z-index-2"
-  }, [_c("div", {
-    staticClass: "card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent"
-  }, [_c("div", {
-    staticClass: "bg-gradient-dark shadow-dark border-radius-lg py-3 pe-1"
-  }, [_c("div", {
-    staticClass: "chart"
-  }, [_c("canvas", {
-    staticClass: "chart-canvas",
-    attrs: {
-      id: "chart-line-tasks",
-      height: "170"
-    }
-  })])])]), _vm._v(" "), _c("div", {
-    staticClass: "card-body"
-  }, [_c("h6", {
-    staticClass: "mb-0"
-  }, [_vm._v("Completed Tasks")]), _vm._v(" "), _c("p", {
-    staticClass: "text-sm"
-  }, [_vm._v("Last Campaign Performance")]), _vm._v(" "), _c("hr", {
-    staticClass: "dark horizontal"
-  }), _vm._v(" "), _c("div", {
-    staticClass: "d-flex"
-  }, [_c("i", {
-    staticClass: "material-icons text-sm my-auto me-1"
-  }, [_vm._v("schedule")]), _vm._v(" "), _c("p", {
-    staticClass: "mb-0 text-sm"
-  }, [_vm._v("just updated")])])])])])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "row mb-4"
-  }, [_c("div", {
-    staticClass: "col-lg-8 col-md-6 mb-md-0 mb-4"
-  }, [_c("div", {
-    staticClass: "card"
-  }, [_c("div", {
     staticClass: "card-header pb-0"
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-lg-6 col-7"
-  }, [_c("h6", [_vm._v("Projects")]), _vm._v(" "), _c("p", {
-    staticClass: "text-sm mb-0"
-  }, [_c("i", {
-    staticClass: "fa fa-check text-info",
-    attrs: {
-      "aria-hidden": "true"
-    }
-  }), _vm._v(" "), _c("span", {
-    staticClass: "font-weight-bold ms-1"
-  }, [_vm._v("30 done")]), _vm._v(" this month\n              ")])]), _vm._v(" "), _c("div", {
-    staticClass: "col-lg-6 col-5 my-auto text-end"
-  }, [_c("div", {
-    staticClass: "dropdown float-lg-end pe-4"
-  }, [_c("a", {
-    staticClass: "cursor-pointer",
-    attrs: {
-      id: "dropdownTable",
-      "data-bs-toggle": "dropdown",
-      "aria-expanded": "false"
-    }
-  }, [_c("i", {
-    staticClass: "fa fa-ellipsis-v text-secondary"
-  })]), _vm._v(" "), _c("ul", {
-    staticClass: "dropdown-menu px-2 py-3 ms-sm-n4 ms-n5",
-    attrs: {
-      "aria-labelledby": "dropdownTable"
-    }
-  }, [_c("li", [_c("a", {
-    staticClass: "dropdown-item border-radius-md",
-    attrs: {
-      href: "javascript:;"
-    }
-  }, [_vm._v("Action")])]), _vm._v(" "), _c("li", [_c("a", {
-    staticClass: "dropdown-item border-radius-md",
-    attrs: {
-      href: "javascript:;"
-    }
-  }, [_vm._v("Another action")])]), _vm._v(" "), _c("li", [_c("a", {
-    staticClass: "dropdown-item border-radius-md",
-    attrs: {
-      href: "javascript:;"
-    }
-  }, [_vm._v("Something else here")])])])])])])]), _vm._v(" "), _c("div", {
-    staticClass: "card-body px-0 pb-2"
-  }, [_c("div", {
-    staticClass: "table-responsive"
-  }, [_c("table", {
-    staticClass: "table align-items-center mb-0"
-  }, [_c("thead", [_c("tr", [_c("th", {
-    staticClass: "text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-  }, [_vm._v("Companies")]), _vm._v(" "), _c("th", {
-    staticClass: "text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-  }, [_vm._v("Members")]), _vm._v(" "), _c("th", {
-    staticClass: "text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-  }, [_vm._v("Budget")]), _vm._v(" "), _c("th", {
-    staticClass: "text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-  }, [_vm._v("Completion")])])]), _vm._v(" "), _c("tbody", [_c("tr", [_c("td", [_c("div", {
-    staticClass: "d-flex px-2 py-1"
-  }, [_c("div", [_c("img", {
-    staticClass: "avatar avatar-sm me-3",
-    attrs: {
-      src: "/assets/img/small-logos/logo-xd.svg",
-      alt: "xd"
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "d-flex flex-column justify-content-center"
-  }, [_c("h6", {
-    staticClass: "mb-0 text-sm"
-  }, [_vm._v("Material XD Version")])])])]), _vm._v(" "), _c("td", [_c("div", {
-    staticClass: "avatar-group mt-2"
-  }, [_c("a", {
-    staticClass: "avatar avatar-xs rounded-circle",
-    attrs: {
-      href: "javascript:;",
-      "data-bs-toggle": "tooltip",
-      "data-bs-placement": "bottom",
-      title: "Ryan Tompson"
-    }
-  }, [_c("img", {
-    attrs: {
-      src: "/assets/img/team-1.jpg",
-      alt: "team1"
-    }
-  })]), _vm._v(" "), _c("a", {
-    staticClass: "avatar avatar-xs rounded-circle",
-    attrs: {
-      href: "javascript:;",
-      "data-bs-toggle": "tooltip",
-      "data-bs-placement": "bottom",
-      title: "Romina Hadid"
-    }
-  }, [_c("img", {
-    attrs: {
-      src: "/assets/img/team-2.jpg",
-      alt: "team2"
-    }
-  })]), _vm._v(" "), _c("a", {
-    staticClass: "avatar avatar-xs rounded-circle",
-    attrs: {
-      href: "javascript:;",
-      "data-bs-toggle": "tooltip",
-      "data-bs-placement": "bottom",
-      title: "Alexander Smith"
-    }
-  }, [_c("img", {
-    attrs: {
-      src: "/assets/img/team-3.jpg",
-      alt: "team3"
-    }
-  })]), _vm._v(" "), _c("a", {
-    staticClass: "avatar avatar-xs rounded-circle",
-    attrs: {
-      href: "javascript:;",
-      "data-bs-toggle": "tooltip",
-      "data-bs-placement": "bottom",
-      title: "Jessica Doe"
-    }
-  }, [_c("img", {
-    attrs: {
-      src: "/assets/img/team-4.jpg",
-      alt: "team4"
-    }
-  })])])]), _vm._v(" "), _c("td", {
-    staticClass: "align-middle text-center text-sm"
-  }, [_c("span", {
-    staticClass: "text-xs font-weight-bold"
-  }, [_vm._v(" $14,000 ")])]), _vm._v(" "), _c("td", {
-    staticClass: "align-middle"
-  }, [_c("div", {
-    staticClass: "progress-wrapper w-75 mx-auto"
-  }, [_c("div", {
-    staticClass: "progress-info"
-  }, [_c("div", {
-    staticClass: "progress-percentage"
-  }, [_c("span", {
-    staticClass: "text-xs font-weight-bold"
-  }, [_vm._v("60%")])])]), _vm._v(" "), _c("div", {
-    staticClass: "progress"
-  }, [_c("div", {
-    staticClass: "progress-bar bg-gradient-info w-60",
-    attrs: {
-      role: "progressbar",
-      "aria-valuenow": "60",
-      "aria-valuemin": "0",
-      "aria-valuemax": "100"
-    }
-  })])])])]), _vm._v(" "), _c("tr", [_c("td", [_c("div", {
-    staticClass: "d-flex px-2 py-1"
-  }, [_c("div", [_c("img", {
-    staticClass: "avatar avatar-sm me-3",
-    attrs: {
-      src: "/assets/img/small-logos/logo-atlassian.svg",
-      alt: "atlassian"
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "d-flex flex-column justify-content-center"
-  }, [_c("h6", {
-    staticClass: "mb-0 text-sm"
-  }, [_vm._v("Add Progress Track")])])])]), _vm._v(" "), _c("td", [_c("div", {
-    staticClass: "avatar-group mt-2"
-  }, [_c("a", {
-    staticClass: "avatar avatar-xs rounded-circle",
-    attrs: {
-      href: "javascript:;",
-      "data-bs-toggle": "tooltip",
-      "data-bs-placement": "bottom",
-      title: "Romina Hadid"
-    }
-  }, [_c("img", {
-    attrs: {
-      src: "/assets/img/team-2.jpg",
-      alt: "team5"
-    }
-  })]), _vm._v(" "), _c("a", {
-    staticClass: "avatar avatar-xs rounded-circle",
-    attrs: {
-      href: "javascript:;",
-      "data-bs-toggle": "tooltip",
-      "data-bs-placement": "bottom",
-      title: "Jessica Doe"
-    }
-  }, [_c("img", {
-    attrs: {
-      src: "/assets/img/team-4.jpg",
-      alt: "team6"
-    }
-  })])])]), _vm._v(" "), _c("td", {
-    staticClass: "align-middle text-center text-sm"
-  }, [_c("span", {
-    staticClass: "text-xs font-weight-bold"
-  }, [_vm._v(" $3,000 ")])]), _vm._v(" "), _c("td", {
-    staticClass: "align-middle"
-  }, [_c("div", {
-    staticClass: "progress-wrapper w-75 mx-auto"
-  }, [_c("div", {
-    staticClass: "progress-info"
-  }, [_c("div", {
-    staticClass: "progress-percentage"
-  }, [_c("span", {
-    staticClass: "text-xs font-weight-bold"
-  }, [_vm._v("10%")])])]), _vm._v(" "), _c("div", {
-    staticClass: "progress"
-  }, [_c("div", {
-    staticClass: "progress-bar bg-gradient-info w-10",
-    attrs: {
-      role: "progressbar",
-      "aria-valuenow": "10",
-      "aria-valuemin": "0",
-      "aria-valuemax": "100"
-    }
-  })])])])]), _vm._v(" "), _c("tr", [_c("td", [_c("div", {
-    staticClass: "d-flex px-2 py-1"
-  }, [_c("div", [_c("img", {
-    staticClass: "avatar avatar-sm me-3",
-    attrs: {
-      src: "/assets/img/small-logos/logo-slack.svg",
-      alt: "team7"
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "d-flex flex-column justify-content-center"
-  }, [_c("h6", {
-    staticClass: "mb-0 text-sm"
-  }, [_vm._v("Fix Platform Errors")])])])]), _vm._v(" "), _c("td", [_c("div", {
-    staticClass: "avatar-group mt-2"
-  }, [_c("a", {
-    staticClass: "avatar avatar-xs rounded-circle",
-    attrs: {
-      href: "javascript:;",
-      "data-bs-toggle": "tooltip",
-      "data-bs-placement": "bottom",
-      title: "Romina Hadid"
-    }
-  }, [_c("img", {
-    attrs: {
-      src: "/assets/img/team-3.jpg",
-      alt: "team8"
-    }
-  })]), _vm._v(" "), _c("a", {
-    staticClass: "avatar avatar-xs rounded-circle",
-    attrs: {
-      href: "javascript:;",
-      "data-bs-toggle": "tooltip",
-      "data-bs-placement": "bottom",
-      title: "Jessica Doe"
-    }
-  }, [_c("img", {
-    attrs: {
-      src: "/assets/img/team-1.jpg",
-      alt: "team9"
-    }
-  })])])]), _vm._v(" "), _c("td", {
-    staticClass: "align-middle text-center text-sm"
-  }, [_c("span", {
-    staticClass: "text-xs font-weight-bold"
-  }, [_vm._v(" Not set ")])]), _vm._v(" "), _c("td", {
-    staticClass: "align-middle"
-  }, [_c("div", {
-    staticClass: "progress-wrapper w-75 mx-auto"
-  }, [_c("div", {
-    staticClass: "progress-info"
-  }, [_c("div", {
-    staticClass: "progress-percentage"
-  }, [_c("span", {
-    staticClass: "text-xs font-weight-bold"
-  }, [_vm._v("100%")])])]), _vm._v(" "), _c("div", {
-    staticClass: "progress"
-  }, [_c("div", {
-    staticClass: "progress-bar bg-gradient-success w-100",
-    attrs: {
-      role: "progressbar",
-      "aria-valuenow": "100",
-      "aria-valuemin": "0",
-      "aria-valuemax": "100"
-    }
-  })])])])]), _vm._v(" "), _c("tr", [_c("td", [_c("div", {
-    staticClass: "d-flex px-2 py-1"
-  }, [_c("div", [_c("img", {
-    staticClass: "avatar avatar-sm me-3",
-    attrs: {
-      src: "/assets/img/small-logos/logo-spotify.svg",
-      alt: "spotify"
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "d-flex flex-column justify-content-center"
-  }, [_c("h6", {
-    staticClass: "mb-0 text-sm"
-  }, [_vm._v("Launch our Mobile App")])])])]), _vm._v(" "), _c("td", [_c("div", {
-    staticClass: "avatar-group mt-2"
-  }, [_c("a", {
-    staticClass: "avatar avatar-xs rounded-circle",
-    attrs: {
-      href: "javascript:;",
-      "data-bs-toggle": "tooltip",
-      "data-bs-placement": "bottom",
-      title: "Ryan Tompson"
-    }
-  }, [_c("img", {
-    attrs: {
-      src: "/assets/img/team-4.jpg",
-      alt: "user1"
-    }
-  })]), _vm._v(" "), _c("a", {
-    staticClass: "avatar avatar-xs rounded-circle",
-    attrs: {
-      href: "javascript:;",
-      "data-bs-toggle": "tooltip",
-      "data-bs-placement": "bottom",
-      title: "Romina Hadid"
-    }
-  }, [_c("img", {
-    attrs: {
-      src: "/assets/img/team-3.jpg",
-      alt: "user2"
-    }
-  })]), _vm._v(" "), _c("a", {
-    staticClass: "avatar avatar-xs rounded-circle",
-    attrs: {
-      href: "javascript:;",
-      "data-bs-toggle": "tooltip",
-      "data-bs-placement": "bottom",
-      title: "Alexander Smith"
-    }
-  }, [_c("img", {
-    attrs: {
-      src: "/assets/img/team-4.jpg",
-      alt: "user3"
-    }
-  })]), _vm._v(" "), _c("a", {
-    staticClass: "avatar avatar-xs rounded-circle",
-    attrs: {
-      href: "javascript:;",
-      "data-bs-toggle": "tooltip",
-      "data-bs-placement": "bottom",
-      title: "Jessica Doe"
-    }
-  }, [_c("img", {
-    attrs: {
-      src: "/assets/img/team-1.jpg",
-      alt: "user4"
-    }
-  })])])]), _vm._v(" "), _c("td", {
-    staticClass: "align-middle text-center text-sm"
-  }, [_c("span", {
-    staticClass: "text-xs font-weight-bold"
-  }, [_vm._v(" $20,500 ")])]), _vm._v(" "), _c("td", {
-    staticClass: "align-middle"
-  }, [_c("div", {
-    staticClass: "progress-wrapper w-75 mx-auto"
-  }, [_c("div", {
-    staticClass: "progress-info"
-  }, [_c("div", {
-    staticClass: "progress-percentage"
-  }, [_c("span", {
-    staticClass: "text-xs font-weight-bold"
-  }, [_vm._v("100%")])])]), _vm._v(" "), _c("div", {
-    staticClass: "progress"
-  }, [_c("div", {
-    staticClass: "progress-bar bg-gradient-success w-100",
-    attrs: {
-      role: "progressbar",
-      "aria-valuenow": "100",
-      "aria-valuemin": "0",
-      "aria-valuemax": "100"
-    }
-  })])])])]), _vm._v(" "), _c("tr", [_c("td", [_c("div", {
-    staticClass: "d-flex px-2 py-1"
-  }, [_c("div", [_c("img", {
-    staticClass: "avatar avatar-sm me-3",
-    attrs: {
-      src: "/assets/img/small-logos/logo-jira.svg",
-      alt: "jira"
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "d-flex flex-column justify-content-center"
-  }, [_c("h6", {
-    staticClass: "mb-0 text-sm"
-  }, [_vm._v("Add the New Pricing Page")])])])]), _vm._v(" "), _c("td", [_c("div", {
-    staticClass: "avatar-group mt-2"
-  }, [_c("a", {
-    staticClass: "avatar avatar-xs rounded-circle",
-    attrs: {
-      href: "javascript:;",
-      "data-bs-toggle": "tooltip",
-      "data-bs-placement": "bottom",
-      title: "Ryan Tompson"
-    }
-  }, [_c("img", {
-    attrs: {
-      src: "/assets/img/team-4.jpg",
-      alt: "user5"
-    }
-  })])])]), _vm._v(" "), _c("td", {
-    staticClass: "align-middle text-center text-sm"
-  }, [_c("span", {
-    staticClass: "text-xs font-weight-bold"
-  }, [_vm._v(" $500 ")])]), _vm._v(" "), _c("td", {
-    staticClass: "align-middle"
-  }, [_c("div", {
-    staticClass: "progress-wrapper w-75 mx-auto"
-  }, [_c("div", {
-    staticClass: "progress-info"
-  }, [_c("div", {
-    staticClass: "progress-percentage"
-  }, [_c("span", {
-    staticClass: "text-xs font-weight-bold"
-  }, [_vm._v("25%")])])]), _vm._v(" "), _c("div", {
-    staticClass: "progress"
-  }, [_c("div", {
-    staticClass: "progress-bar bg-gradient-info w-25",
-    attrs: {
-      role: "progressbar",
-      "aria-valuenow": "25",
-      "aria-valuemin": "0",
-      "aria-valuemax": "25"
-    }
-  })])])])]), _vm._v(" "), _c("tr", [_c("td", [_c("div", {
-    staticClass: "d-flex px-2 py-1"
-  }, [_c("div", [_c("img", {
-    staticClass: "avatar avatar-sm me-3",
-    attrs: {
-      src: "/assets/img/small-logos/logo-invision.svg",
-      alt: "invision"
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "d-flex flex-column justify-content-center"
-  }, [_c("h6", {
-    staticClass: "mb-0 text-sm"
-  }, [_vm._v("Redesign New Online Shop")])])])]), _vm._v(" "), _c("td", [_c("div", {
-    staticClass: "avatar-group mt-2"
-  }, [_c("a", {
-    staticClass: "avatar avatar-xs rounded-circle",
-    attrs: {
-      href: "javascript:;",
-      "data-bs-toggle": "tooltip",
-      "data-bs-placement": "bottom",
-      title: "Ryan Tompson"
-    }
-  }, [_c("img", {
-    attrs: {
-      src: "/assets/img/team-1.jpg",
-      alt: "user6"
-    }
-  })]), _vm._v(" "), _c("a", {
-    staticClass: "avatar avatar-xs rounded-circle",
-    attrs: {
-      href: "javascript:;",
-      "data-bs-toggle": "tooltip",
-      "data-bs-placement": "bottom",
-      title: "Jessica Doe"
-    }
-  }, [_c("img", {
-    attrs: {
-      src: "/assets/img/team-4.jpg",
-      alt: "user7"
-    }
-  })])])]), _vm._v(" "), _c("td", {
-    staticClass: "align-middle text-center text-sm"
-  }, [_c("span", {
-    staticClass: "text-xs font-weight-bold"
-  }, [_vm._v(" $2,000 ")])]), _vm._v(" "), _c("td", {
-    staticClass: "align-middle"
-  }, [_c("div", {
-    staticClass: "progress-wrapper w-75 mx-auto"
-  }, [_c("div", {
-    staticClass: "progress-info"
-  }, [_c("div", {
-    staticClass: "progress-percentage"
-  }, [_c("span", {
-    staticClass: "text-xs font-weight-bold"
-  }, [_vm._v("40%")])])]), _vm._v(" "), _c("div", {
-    staticClass: "progress"
-  }, [_c("div", {
-    staticClass: "progress-bar bg-gradient-info w-40",
-    attrs: {
-      role: "progressbar",
-      "aria-valuenow": "40",
-      "aria-valuemin": "0",
-      "aria-valuemax": "40"
-    }
-  })])])])])])])])])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-lg-4 col-md-6"
-  }, [_c("div", {
-    staticClass: "card h-100"
-  }, [_c("div", {
-    staticClass: "card-header pb-0"
-  }, [_c("h6", [_vm._v("Orders overview")]), _vm._v(" "), _c("p", {
-    staticClass: "text-sm"
-  }, [_c("i", {
-    staticClass: "fa fa-arrow-up text-success",
-    attrs: {
-      "aria-hidden": "true"
-    }
-  }), _vm._v(" "), _c("span", {
-    staticClass: "font-weight-bold"
-  }, [_vm._v("24%")]), _vm._v(" this month\n          ")])]), _vm._v(" "), _c("div", {
-    staticClass: "card-body p-3"
-  }, [_c("div", {
-    staticClass: "timeline timeline-one-side"
-  }, [_c("div", {
-    staticClass: "timeline-block mb-3"
-  }, [_c("span", {
-    staticClass: "timeline-step"
-  }, [_c("i", {
-    staticClass: "material-icons text-success text-gradient"
-  }, [_vm._v("notifications")])]), _vm._v(" "), _c("div", {
-    staticClass: "timeline-content"
-  }, [_c("h6", {
-    staticClass: "text-dark text-sm font-weight-bold mb-0"
-  }, [_vm._v("$2400, Design changes")]), _vm._v(" "), _c("p", {
-    staticClass: "text-secondary font-weight-bold text-xs mt-1 mb-0"
-  }, [_vm._v("22 DEC 7:20 PM")])])]), _vm._v(" "), _c("div", {
-    staticClass: "timeline-block mb-3"
-  }, [_c("span", {
-    staticClass: "timeline-step"
-  }, [_c("i", {
-    staticClass: "material-icons text-danger text-gradient"
-  }, [_vm._v("code")])]), _vm._v(" "), _c("div", {
-    staticClass: "timeline-content"
-  }, [_c("h6", {
-    staticClass: "text-dark text-sm font-weight-bold mb-0"
-  }, [_vm._v("New order #1832412")]), _vm._v(" "), _c("p", {
-    staticClass: "text-secondary font-weight-bold text-xs mt-1 mb-0"
-  }, [_vm._v("21 DEC 11 PM")])])]), _vm._v(" "), _c("div", {
-    staticClass: "timeline-block mb-3"
-  }, [_c("span", {
-    staticClass: "timeline-step"
-  }, [_c("i", {
-    staticClass: "material-icons text-info text-gradient"
-  }, [_vm._v("shopping_cart")])]), _vm._v(" "), _c("div", {
-    staticClass: "timeline-content"
-  }, [_c("h6", {
-    staticClass: "text-dark text-sm font-weight-bold mb-0"
-  }, [_vm._v("Server payments for April")]), _vm._v(" "), _c("p", {
-    staticClass: "text-secondary font-weight-bold text-xs mt-1 mb-0"
-  }, [_vm._v("21 DEC 9:34 PM")])])]), _vm._v(" "), _c("div", {
-    staticClass: "timeline-block mb-3"
-  }, [_c("span", {
-    staticClass: "timeline-step"
-  }, [_c("i", {
-    staticClass: "material-icons text-warning text-gradient"
-  }, [_vm._v("credit_card")])]), _vm._v(" "), _c("div", {
-    staticClass: "timeline-content"
-  }, [_c("h6", {
-    staticClass: "text-dark text-sm font-weight-bold mb-0"
-  }, [_vm._v("New card added for order #4395133")]), _vm._v(" "), _c("p", {
-    staticClass: "text-secondary font-weight-bold text-xs mt-1 mb-0"
-  }, [_vm._v("20 DEC 2:20 AM")])])]), _vm._v(" "), _c("div", {
-    staticClass: "timeline-block mb-3"
-  }, [_c("span", {
-    staticClass: "timeline-step"
-  }, [_c("i", {
-    staticClass: "material-icons text-primary text-gradient"
-  }, [_vm._v("key")])]), _vm._v(" "), _c("div", {
-    staticClass: "timeline-content"
-  }, [_c("h6", {
-    staticClass: "text-dark text-sm font-weight-bold mb-0"
-  }, [_vm._v("Unlock packages for development")]), _vm._v(" "), _c("p", {
-    staticClass: "text-secondary font-weight-bold text-xs mt-1 mb-0"
-  }, [_vm._v("18 DEC 4:54 AM")])])]), _vm._v(" "), _c("div", {
-    staticClass: "timeline-block"
-  }, [_c("span", {
-    staticClass: "timeline-step"
-  }, [_c("i", {
-    staticClass: "material-icons text-dark text-gradient"
-  }, [_vm._v("payments")])]), _vm._v(" "), _c("div", {
-    staticClass: "timeline-content"
-  }, [_c("h6", {
-    staticClass: "text-dark text-sm font-weight-bold mb-0"
-  }, [_vm._v("New order #9583120")]), _vm._v(" "), _c("p", {
-    staticClass: "text-secondary font-weight-bold text-xs mt-1 mb-0"
-  }, [_vm._v("17 DEC")])])])])])])])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("footer", {
-    staticClass: "footer py-4"
-  }, [_c("div", {
-    staticClass: "container-fluid"
-  }, [_c("div", {
-    staticClass: "row align-items-center justify-content-lg-between"
-  }, [_c("div", {
-    staticClass: "col-lg-6 mb-lg-0 mb-4"
-  }, [_c("div", {
-    staticClass: "copyright text-center text-sm text-muted text-lg-start"
-  }, [_vm._v("\n            ©\n            made with "), _c("i", {
-    staticClass: "fa fa-heart"
-  }), _vm._v(" by\n            "), _c("a", {
-    staticClass: "font-weight-bold",
-    attrs: {
-      href: "https://www.creative-tim.com",
-      target: "_blank"
-    }
-  }, [_vm._v("Creative Tim")]), _vm._v("\n            for a better web.\n          ")])]), _vm._v(" "), _c("div", {
-    staticClass: "col-lg-6"
-  }, [_c("ul", {
-    staticClass: "nav nav-footer justify-content-center justify-content-lg-end"
-  }, [_c("li", {
-    staticClass: "nav-item"
-  }, [_c("a", {
-    staticClass: "nav-link text-muted",
-    attrs: {
-      href: "https://www.creative-tim.com",
-      target: "_blank"
-    }
-  }, [_vm._v("Creative Tim")])]), _vm._v(" "), _c("li", {
-    staticClass: "nav-item"
-  }, [_c("a", {
-    staticClass: "nav-link text-muted",
-    attrs: {
-      href: "https://www.creative-tim.com/presentation",
-      target: "_blank"
-    }
-  }, [_vm._v("About Us")])]), _vm._v(" "), _c("li", {
-    staticClass: "nav-item"
-  }, [_c("a", {
-    staticClass: "nav-link text-muted",
-    attrs: {
-      href: "https://www.creative-tim.com/blog",
-      target: "_blank"
-    }
-  }, [_vm._v("Blog")])]), _vm._v(" "), _c("li", {
-    staticClass: "nav-item"
-  }, [_c("a", {
-    staticClass: "nav-link pe-0 text-muted",
-    attrs: {
-      href: "https://www.creative-tim.com/license",
-      target: "_blank"
-    }
-  }, [_vm._v("License")])])])])])])]);
+  }, [_c("h6", [_vm._v("Career Trajectory")])]);
 }];
 render._withStripped = true;
 

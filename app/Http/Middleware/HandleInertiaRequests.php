@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Career;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Middleware;
@@ -42,6 +43,7 @@ class HandleInertiaRequests extends Middleware
             'appUrl' => env('APP_URL'),
             'auth' => Auth::check(),
             'user' => Auth::user(),
+            'careers' => Career::with('items')->get(),
             'menu' => [
                 [
                     'label' => 'Dashboard',

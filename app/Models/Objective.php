@@ -5,24 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CareerItem extends Model
+class Objective extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'career_id',
         'description',
-        'title',
-        'level',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
     public function career()
     {
-        return $this->belongsTo(Career::class);
-    }
-
-    public function users()
-    {
-        return $this->belongsToMany(User::class, 'dones', 'item_id', 'user_id');
+        return $this->belongsTo(Career::class, 'career_id');
     }
 }
