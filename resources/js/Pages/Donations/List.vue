@@ -47,15 +47,16 @@
                                 }}</span>
                             </td>
                             <td class="align-middle">
-                                <Link :href="'/donations/' + donation.id" class="text-secondary font-weight-bold text-xs"
+                                <Link :href="'/donations/' + donation.id" class="btn btn-primary"
                                     data-toggle="tooltip" data-original-title="Edit user">
-                                View
+                                VIEW
                                 </Link>
-                                |
-                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                                    data-original-title="Edit user">
-                                    Edit
-                                </a>
+                                <Link class="btn btn-success" v-if="['Administrator', 'Coordinator'].includes($page.props.user.type)" :href="'donations/' + donation.id" :data="{status: 'APPROVED'}" method="put">
+                                    <i class="material-icons opacity-10">done</i>
+                                </Link>
+                                <Link class="btn btn-danger" v-if="['Administrator', 'Coordinator'].includes($page.props.user.type)" :href="'donations/' + donation.id" :data="{status: 'REJECTED'}" method="put">
+                                    <i class="material-icons opacity-10">close</i>
+                                </Link>
                             </td>
                         </tr>
                     </tbody>

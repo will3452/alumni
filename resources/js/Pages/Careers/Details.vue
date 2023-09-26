@@ -12,7 +12,7 @@
                         <span class="mb-2 text-xs">Created Date: <span class="text-dark font-weight-bold ms-sm-2"> {{
                             career.created_at }}</span></span>
                     </div>
-                    <div class="ms-auto text-end">
+                    <div class="ms-auto text-end" v-if="['Administrator', 'Coordinator'].includes($page.props.user.type)">
                         <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i
                                 class="material-icons text-sm me-2">edit</i>Edit</a>
                     </div>

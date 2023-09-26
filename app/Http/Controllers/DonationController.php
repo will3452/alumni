@@ -43,4 +43,10 @@ class DonationController extends Controller
             'donation' => $donation,
         ]);
     }
+
+    public function update(Request $request, Donation $donation)
+    {
+        $donation->update($request->all());
+        return redirect()->to('/donations');
+    }
 }

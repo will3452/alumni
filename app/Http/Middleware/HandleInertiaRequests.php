@@ -38,29 +38,53 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $menu = [
+            [
+                'label' => 'Dashboard',
+                'href' => '/dashboard',
+                'icon' => 'dashboard',
+            ],
+
+            [
+                'label' => 'News',
+                'href' => '/posts',
+                'icon' => 'feed',
+            ],
+
+            [
+                'label' => 'Donations',
+                'href' => '/donations',
+                'icon' => 'volunteer_activism',
+            ],
+
+        ];
+
+        if (Auth::check() && in_array(Auth::user()->type, ['Administrator', 'Coordinator'])) {
+            array_push($menu, [
+                'label' => 'Careers',
+                'href' => '/careers',
+                'icon' => 'work',
+            ]);
+            array_push($menu, [
+                'label' => 'Reports',
+                'href' => '/reports',
+                'icon' => 'table_view',
+            ]);
+        }
+
+        array_push($menu,
+            [
+                'label' => 'Profile',
+                'href' => '/profile',
+                'icon' => 'person',
+            ]);
         return array_merge(parent::share($request), [
             'appName' => env('APP_NAME'),
             'appUrl' => env('APP_URL'),
             'auth' => Auth::check(),
             'user' => Auth::user(),
             'careers' => Career::with('items')->get(),
-            'menu' => [
-                [
-                    'label' => 'Dashboard',
-                    'href' => '/dashboard',
-                    'icon' => 'dashboard',
-                ],
-                [
-                    'label' => 'Donations',
-                    'href' => '/donations',
-                    'icon' => 'volunteer_activism',
-                ],
-                [
-                    'label' => 'Careers',
-                    'href' => '/careers',
-                    'icon' => 'work',
-                ],
-            ],
+            'menu' => $menu,
         ]);
     }
 }

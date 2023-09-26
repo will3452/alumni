@@ -19,11 +19,6 @@
                                     data-toggle="tooltip" data-original-title="Edit user">
                                 View
                                 </Link>
-                                |
-                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                                    data-original-title="Edit user">
-                                    Edit
-                                </a>
                             </td>
                         </tr>
                     </tbody>

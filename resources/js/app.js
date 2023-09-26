@@ -1,4 +1,11 @@
+window.axios = require('axios');
+
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
 import Vue from 'vue'
+import VueCal from 'vue-cal'
+import VueExcelXlsx from "vue-excel-xlsx"
+import 'vue-cal/dist/vuecal.css';
 import { createInertiaApp, Link, Head } from '@inertiajs/inertia-vue'
 import { InertiaProgress } from '@inertiajs/progress'
 import Shared from './Shared';
@@ -18,6 +25,8 @@ createInertiaApp({
     Vue.use(Toast, {});
     Vue.component('Link', Link)
     Vue.component('Head', Head)
+    Vue.component('vue-cal', VueCal);
+    Vue.use(VueExcelXlsx);
 
     // auto import shared component
     for (let component in Shared) {

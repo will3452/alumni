@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\DonationController;
+use App\Http\Controllers\PostController;
 use App\Models\Career;
 use App\Models\Donation;
 use App\Models\Done;
+use App\Models\Post;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -42,6 +44,8 @@ Route::middleware(['auth'])->group(function () {
 
         return Inertia::render('Dashboard', [
             'statistic' => [
+                'total_posts' => Post::count(),
+                'total_posts_last_week' => (Post::whereBetween('created_at', [Carbon::now()->copy()->subWeek(), Carbon::now()])->count() / Post::count()) * 100,
                 'total_donations' => $total_donations,
                 'rate_last_week' => $rate_last_week,
                 'total_users' => User::count(),
@@ -51,13 +55,21 @@ Route::middleware(['auth'])->group(function () {
             ],
             'objectives' => auth()->user()->objectives()->with('career.items')->get(),
         ]);
+
     })->name('home');
 
     // OBJECTIVES
     Route::post('/add-objectives', function (Request $request) {
-        return auth()->user()->objectives()->create($request->all());
+        auth()->user()->objectives()->create($request->all());
 
         return redirect()->to('/dashboard');
+    });
+
+    Route::get('/profile', function (Request $request) {
+
+        return inertia()->render('Profile', [
+            'objectives' => auth()->user()->objectives()->with('career.items')->get(),
+        ]);
     });
 
     Route::post('/mark-as-done', function (Request $request) {
@@ -75,6 +87,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', [DonationController::class, 'index']);
         Route::get('/create', [DonationController::class, 'create']);
         Route::get('/{donation}', [DonationController::class, 'show']);
+        Route::put('/{donation}', [DonationController::class, 'update']);
     });
 
     //CAREERS
@@ -85,6 +98,22 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', [CareerController::class, 'index']);
         Route::get('/create', [CareerController::class, 'create']);
         Route::get('/{career}', [CareerController::class, 'show']);
+    });
+
+    Route::prefix('/posts')->name('posts.')->group(function () {
+        Route::post('/', [PostController::class, 'store'])->name('store');
+        Route::get('/', [PostController::class, 'index'])->name('index');
+    });
+
+    Route::get('/reports', function () {
+        return Inertia::render('Reports');
+    });
+
+    Route::post('/reports', function (Request $request) {
+        $model = $request->model;
+        $report = ("\\App\\Models\\$model")::whereBetween('created_at', [Carbon::parse($request->from), Carbon::parse($request->to)])->get();
+
+        return $report;
     });
 
 });
@@ -108,7 +137,7 @@ Route::get('/logout', function () {
 
 Route::post('/login', function (Request $request) {
     $creds = $request->validate([
-        'email' => ['required', 'email', 'exists:users,email'],
+        'email' => ['required', 'exists:users,email'],
         'password' => 'required',
     ]);
     if (Auth::attempt($creds)) {
