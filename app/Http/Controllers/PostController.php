@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
+use App\Notifications\NewPostCreatedNotification;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -22,7 +24,18 @@ class PostController extends Controller
         ]);
 
         $data['user_id'] = auth()->id();
-        Post::create($data);
+
+        $post = Post::create($data);
+
+        $users = User::get();
+
+        foreach ($users as $user) {
+            if ($user->id == auth()->id()) {
+                continue;
+            }
+
+            $user->notify(new NewPostCreatedNotification());
+        }
 
         return redirect()->to('/posts');
     }

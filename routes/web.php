@@ -11,7 +11,9 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 /*
@@ -90,6 +92,13 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/{donation}', [DonationController::class, 'update']);
     });
 
+    // NOTIFICATIONS
+    Route::prefix('/notifications')->name('notifications.')->group(function () {
+        Route::get('/', function () {
+            return inertia()->render('Notifications', ['notifications' => auth()->user()->notifications()->latest()->get()]);
+        });
+    });
+
     //CAREERS
     Route::prefix('/careers')->name('careers.')->group(function () {
         Route::post('/item', [CareerController::class, 'storeItem']);
@@ -130,6 +139,39 @@ Route::get('/register', function () {
     return Inertia::render('Register');
 });
 
+Route::get('/reset-password', function () {
+    return Inertia::render('ResetPassword');
+});
+
+Route::post('/reset-password', function (Request $request) {
+    $email = $request->email;
+    $user = User::whereEmail($email)->first();
+    if (!$user) {
+        return back()->withErrors(['Email' => 'Credential is not match to our record.']);
+    }
+
+    $password = Str::random(8);
+
+    $user->update(['password' => bcrypt($password)]);
+
+    Mail::raw("Hello here is your temporarily password. $password", function ($message) use ($email) {
+        $message->to($email)
+            ->subject('temporarily password');
+    });
+
+    return 'please check your email!';
+});
+
+Route::post('update-password', function (Request $request) {
+    auth()->user()->update(['password' => bcrypt($request->password)]);
+
+    return 'Your password has been updated!';
+});
+
+Route::get('/terms-and-conditions', function () {
+    return Inertia::render('TermsAndCondition');
+});
+
 Route::get('/logout', function () {
     Auth::logout();
     return back();
@@ -154,6 +196,8 @@ Route::post('/register', function (Request $request) {
         'email' => ['required', 'email', 'unique:users,email'],
         'password' => ['required', 'min:6'],
         'type' => 'required',
+        'course' => '',
+        'school_year' => '',
     ]);
 
     $details['password'] = bcrypt($details['password']);

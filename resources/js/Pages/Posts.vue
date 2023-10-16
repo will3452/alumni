@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Card title="Write new">
+        <Card title="Write news / Post job" v-if="['Coordinator'].includes($page.props.user.type)">
             <div class="alert alert-warning" v-for="error in $page.props.errors" :key="error">
                 {{ error }}
             </div>

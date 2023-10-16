@@ -46,20 +46,29 @@ class HandleInertiaRequests extends Middleware
             ],
 
             [
-                'label' => 'News',
+                'label' => 'Post News & Job Offer',
                 'href' => '/posts',
                 'icon' => 'feed',
             ],
 
             [
-                'label' => 'Donations',
-                'href' => '/donations',
-                'icon' => 'volunteer_activism',
+                'label' => 'Notifications',
+                'href' => '/notifications',
+                'icon' => 'notifications',
             ],
 
         ];
 
-        if (Auth::check() && in_array(Auth::user()->type, ['Administrator', 'Coordinator'])) {
+        if (Auth::check() && in_array(Auth::user()->type, ['Coordinator', 'Alumni'])) {
+            array_push($menu,
+                [
+                    'label' => 'Donations',
+                    'href' => '/donations',
+                    'icon' => 'volunteer_activism',
+                ], );
+        }
+
+        if (Auth::check() && in_array(Auth::user()->type, ['Administrator'])) {
             array_push($menu, [
                 'label' => 'Careers',
                 'href' => '/careers',

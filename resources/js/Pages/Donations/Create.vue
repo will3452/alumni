@@ -19,6 +19,9 @@
                  <form-item label="Reference No.">
                     <input type="text" class="form-control" v-model="form.reference_no" />
                 </form-item>
+                <form-item label="Proof of Payment">
+                    <input type="file" class="form-control" @input="form.pop = $event.target.files[0]" />
+                </form-item>
                 <form-item label="Amount (PHP)">
                     <input type="number" class="form-control" v-model="form.amount" />
                 </form-item>
@@ -41,6 +44,7 @@ export default {
             form: this.$inertia.form({
                 description: '',
                 mop: '',
+                pop: '',
                 reference_no: '',
                 amount: 0,
             })

@@ -24,6 +24,8 @@ class User extends Authenticatable
         'email',
         'password',
         'type',
+        'school_year',
+        'course',
     ];
 
     public function objectives()

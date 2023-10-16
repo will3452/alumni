@@ -14,6 +14,7 @@ class Donation extends Model
         'status',
         'description',
         'mop',
+        'pop',
         'reference_no',
         'amount',
     ];

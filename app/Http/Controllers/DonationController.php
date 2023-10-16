@@ -25,9 +25,13 @@ class DonationController extends Controller
         $payload = $request->validate([
             'description' => ['required', 'max:200'],
             'mop' => ['required'],
+            'pop' => ['image', 'max:3000', 'required'],
             'reference_no' => ['required', 'unique:donations,reference_no'],
             'amount' => ['required'],
         ]);
+
+        $payload['pop'] = $request->pop->store('public');
+        $payload['pop'] = str_replace('public/', '/storage/', $payload['pop']);
 
         // dd($payload);
 

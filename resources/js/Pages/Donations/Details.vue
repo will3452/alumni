@@ -11,6 +11,8 @@
                 <span class="mb-2 text-xs">Amount: <span
                         class="text-dark ms-sm-2 font-weight-bold" v-if="!edit">{{ donation.amount }}</span> <input type="number" v-model="donation.amount" v-else></span>
                 <span class="text-xs mb-2">Donator: <span class="text-dark ms-sm-2 font-weight-bold">{{donation.user.name}}</span> </span>
+                <span class="text-xs mb-2">Proof Of Payment: <a class="text-dark ms-sm-2 font-weight-bold" :href="donation.pop">Click here to view image. </a> </span>
+
                 <span class="mb-2 text-xs">Mode of payment: <span
                         class="text-dark ms-sm-2 font-weight-bold">{{ donation.mop }}</span></span>
             </div>

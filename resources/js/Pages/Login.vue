@@ -26,6 +26,9 @@
 
                     <input type="password" class="form-control" v-model="form.password">
                   </div>
+                  <p class="mt-4 text-xs text-right">
+                    <Link href="/reset-password" class="text-primary text-gradient font-weight-bold">Forgot password?</Link>
+                  </p>
                   <div class="text-center">
                     <button type="button" :disabled="form.processing" class="btn bg-gradient-primary w-100 my-4 mb-2" @click="login">LOGIN</button>
                   </div>
@@ -33,6 +36,7 @@
                     Don't have an account?
                     <Link href="/register" class="text-primary text-gradient font-weight-bold">REGISTER</Link>
                   </p>
+
                 </form>
               </div>
             </div>

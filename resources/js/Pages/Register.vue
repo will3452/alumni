@@ -25,6 +25,18 @@
                         <option value="Student">Student</option>
                       </select>
                     </div>
+                    <div v-if="form.type == 'Alumni'">
+                        <label class="form-label">Course</label>
+                        <div class="input-group input-group-outline mb-3">
+                        <input type="text" v-model="form.course" class="form-control" :class="{'is-invalid': form.errors.course}" >
+                        </div>
+                    </div>
+                    <div v-if="form.type == 'Alumni'">
+                        <label class="form-label">School Year</label>
+                        <div class="input-group input-group-outline mb-3">
+                        <input type="text" v-model="form.schoolYear" class="form-control" :class="{'is-invalid': form.errors.schoolYear}" >
+                        </div>
+                    </div>
                     <label class="form-label">Name</label>
                     <div class="input-group input-group-outline mb-3">
                       <input type="text" v-model="form.name" class="form-control" :class="{'is-invalid': form.errors.name}" >
@@ -36,15 +48,21 @@
                     <label class="form-label">Password</label>
                     <div class="input-group input-group-outline mb-3">
                       <input type="password" v-model="form.password" class="form-control" :class="{'is-invalid': form.errors.password}">
+
                     </div>
+                    <div>
+                        <small v-if="notValidPassword" class="text-danger">
+                            Password must be atleast 8 characters.
+                        </small>
+                      </div>
                     <div class="form-check form-check-info text-start ps-0">
                       <input class="form-check-input" type="checkbox" v-model="agree" id="flexCheckDefault" checked>
                       <label class="form-check-label" for="flexCheckDefault">
-                        I agree the <a href="javascript:;" class="text-dark font-weight-bolder">Terms and Conditions</a>
+                        I agree the <a href="/terms-and-conditions" target="_blank" class="text-dark font-weight-bolder">Terms and Conditions</a>
                       </label>
                     </div>
                     <div class="text-center">
-                      <button @click="register" type="button" :disabled="! agree || form.processing" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">SUBMIT</button>
+                      <button @click="register" type="button" :disabled="! agree || form.processing || notValidPassword" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">SUBMIT</button>
                     </div>
                   </form>
                 </div>
@@ -75,7 +93,14 @@ export default {
                 email:'',
                 password:'',
                 type: '',
+                school_year: '',
+                course: '',
             }),
+        }
+    },
+    computed: {
+        notValidPassword() {
+            return this.form.password.length > 1 && this.form.password.length < 8;
         }
     },
     methods: {
