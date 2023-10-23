@@ -4,7 +4,7 @@
             Total Donations
         </div>
         <div class="text-right text-gray-700 font-bold text-xl p-2">
-            PHP {{ \App\Models\Donation::whereNotNull('ApprovedAt')->sum('amount') }}
+            PHP {{ \App\Models\Donation::whereNotNull('approved_at')->sum('amount') }}
         </div>
         <div class="text-center border-t-2 text-sm font-mono p-2">
             {{ \Carbon\Carbon::now()->format('m/d/y')}}
