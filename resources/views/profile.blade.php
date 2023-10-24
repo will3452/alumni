@@ -16,17 +16,37 @@
                 </div>
             </div>
         </div>
-       <form action="/save-profile" method="POST">
-        @csrf
-            <div>
-                <textarea name="descriptions" placeholder="Description" class="p-2 w-full border-2 mt-2 rounded-xl" name="" id="" cols="30" rows="5">{{$user->descriptions}}</textarea>
+        @if (auth()->id() == $user->id)
+        <form action="/save-profile" method="POST">
+            @csrf
+                <div>
+                    <textarea name="descriptions" placeholder="Description" class="p-2 w-full border-2 mt-2 rounded-xl" name="" id="" cols="30" rows="5">{{$user->descriptions}}</textarea>
+                </div>
+                <div>
+                    <textarea name="skills" placeholder="Skills" class="p-2 w-full border-2 mt-2 rounded-xl" name="" id="" cols="30" rows="5">{{$user->skills}}</textarea>
+                </div>
+                <button type="submit" class="px-4 p-2 font-bold text-white rounded-xl bg-pink-500">
+                    SAVE
+                </button>
+           </form>
+        @else
+        <div>
+            <div class="text-2xl font-bold mt-2">
+                Description
             </div>
-            <div>
-                <textarea name="skills" placeholder="Skills" class="p-2 w-full border-2 mt-2 rounded-xl" name="" id="" cols="30" rows="5">{{$user->skills}}</textarea>
+            <div class="font-mono">
+                {{$user->descriptions ?? 'lorem ipsum dolor set.'}}
             </div>
-            <button type="submit" class="px-4 p-2 font-bold text-white rounded-xl bg-pink-500">
-                SAVE
-            </button>
-       </form>
+        </div>
+        <div>
+            <div class="text-2xl font-bold mt-2">
+                Skills
+            </div>
+            <div class="font-mono">
+                {{$user->skills ?? 'lorem ipsum dolor set.'}}
+            </div>
+        </div>
+        @endif
+
     </div>
 @endsection

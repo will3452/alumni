@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -64,10 +65,22 @@ Route::post('/save-profile', [ProfileController::class, 'saveProfile'])->name('p
 
 Route::view('/notifications', 'notifications');
 Route::view('/news', 'posts.alumni');
+Route::view('/browse-alumni', 'alumni');
 
 Route::prefix('/posts')->group(function () {
     Route::get('/', [PostController::class, 'index']);
     Route::get('/job', [PostController::class, 'createJob']);
     Route::get('/news', [PostController::class, 'createNews']);
     Route::post('/', [PostController::class, 'store']);
+    Route::get('/{post}', [PostController::class, 'show']);
+});
+
+Route::prefix('/courses')->group(function () {
+    Route::get('/', [CourseController::class, 'index']);
+    Route::get('/step/{step}', [CourseController::class, 'showStep']);
+    Route::get('/create', [CourseController::class, 'create']);
+    Route::post('/step', [CourseController::class, 'storeStep']);
+    Route::post('/', [CourseController::class, 'store']);
+    Route::get('/{course}', [CourseController::class, 'show']);
+    Route::get('/remove-step/{step}', [CourseController::class, 'removeStep']);
 });

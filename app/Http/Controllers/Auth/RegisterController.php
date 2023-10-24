@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Course;
 use App\Models\User;
+use App\Models\UserCourse;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -67,7 +69,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'type' => $data['type'],
@@ -75,5 +77,10 @@ class RegisterController extends Controller
             'school_year' => $data['school_year'],
             'password' => Hash::make($data['password']),
         ]);
+        if ($data['type'] == User::TYPE_ALUMNI) {
+            $course = Course::whereName($data['course'])->first();
+            UserCourse::create(['user_id' => $user->id, 'course_id' => $course->id]);
+        }
+        return $user;
     }
 }

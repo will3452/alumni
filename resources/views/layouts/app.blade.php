@@ -24,6 +24,10 @@
             <x-coordinator-sidebar></x-coordinator-sidebar>
         @endif
 
+        @if (auth()->user()->type == 'Student')
+            <x-student-sidebar></x-student-sidebar>
+        @endif
+
         <div class="w-3/4">
             <x-top-bar></x-top-bar>
 

@@ -51,7 +51,11 @@
             <div class="my-4">
                 <label for="course" class="font-bold text-lg">{{ __('Course') }}</label>
                 <div class="col-md-6">
-                    <input id="name" type="text" class="rounded-full p-2 w-full @error('course') border-red-500 @enderror" name="course" value="{{ old('course') }}" required autocomplete="course" autofocus>
+                    <select name="course" id="" class="rounded-full p-2 w-full @error('course') border-red-500 @enderror">
+                        @foreach (\App\Models\Course::get() as $item)
+                            <option value="{{$item->name}}">{{$item->name}} - {{$item->descriptions }} </option>
+                        @endforeach
+                    </select>
                     @error('course')
                         <span class="text-red-500" role="alert">
                             <strong>{{ $message }}</strong>

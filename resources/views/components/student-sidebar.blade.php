@@ -7,17 +7,14 @@
     <a href="/home" class="block bg-pink-500 p-2 rounded text-pink-100 mb-4">
         Dashboard
     </a>
-    <a href="/users" class="block bg-pink-500 p-2 rounded text-pink-100 mb-4">
-        Manage User Accounts
+    <a href="/notifications" class="block bg-pink-500 p-2 rounded text-pink-100 mb-4">
+        Notifications
     </a>
-    <a href="{{route('admin.donation.index')}}" class="block bg-pink-500 p-2 rounded text-pink-100 mb-4">
-        Manage Donations
-    </a>
-    <a href="/courses" class="block bg-pink-500 p-2 rounded text-pink-100 mb-4">
-        Manage Courses
+    <a href="/browse-alumni" class="block bg-pink-500 p-2 rounded text-pink-100 mb-4">
+        Browse Alumni
     </a>
     <a href="{{route('alumni.profile.show', ['user' => auth()->id()])}}" class="block bg-pink-500 p-2 rounded text-pink-100 mb-4">
-        Manage Profile
+        Profile
     </a>
 
     <img src="/sidebar.png" alt="" class="absolute bottom-0">
