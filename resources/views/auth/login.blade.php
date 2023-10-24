@@ -1,8 +1,8 @@
 @extends('layouts.auth')
 
 @section('content')
-<div class="flex h-screen w-screen items-center justify-center">
-    <form method="POST" action="{{ route('login') }}" class="w-1/3">
+<div class="flex h-screen w-screen items-center justify-center " style="background: url('/login.jpg'); background-repeat: no-repeat; background-size:cover; background-position:center; ">
+    <form method="POST" action="{{ route('login') }}" class="w-1/3 p-6 bg-white rounded-xl bg-opacity-80">
         <h1 class="text-center font-bold text-xl p-2 mb-2">LOGIN</h1>
         @csrf
         <label for="email" class="font-bold">{{ __('Email Address') }}</label>
