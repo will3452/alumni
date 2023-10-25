@@ -77,10 +77,10 @@ Route::prefix('/posts')->group(function () {
 
 Route::prefix('/courses')->group(function () {
     Route::get('/', [CourseController::class, 'index']);
+    Route::post('/', [CourseController::class, 'store']);
     Route::get('/step/{step}', [CourseController::class, 'showStep']);
     Route::get('/create', [CourseController::class, 'create']);
     Route::post('/step', [CourseController::class, 'storeStep']);
-    Route::post('/', [CourseController::class, 'store']);
     Route::get('/{course}', [CourseController::class, 'show']);
     Route::get('/remove-step/{step}', [CourseController::class, 'removeStep']);
 });

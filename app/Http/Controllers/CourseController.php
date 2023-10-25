@@ -35,6 +35,7 @@ class CourseController extends Controller
             'name' => 'required',
             'descriptions' => 'required',
         ]);
+
         Course::create($data);
 
         alert()->success('Success', 'Course Successfully created!');
