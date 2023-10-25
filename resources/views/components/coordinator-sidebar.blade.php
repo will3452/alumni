@@ -1,4 +1,4 @@
-<div class="w-1/4 bg-red-800 text-center h-screen text-white p-4 relative">
+<div  style="background: #800000" class="w-1/4 text-center h-screen text-white p-4 relative">
     <div class="flex  items-center mb-4 bg-white p-2 rounded-xl">
         <img src="/logo.png" class="w-16" alt="">
         <h1 class="font-bold text-black mx-2 text-2xl">CAREER CONNECT</h1>
