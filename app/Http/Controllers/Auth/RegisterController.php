@@ -77,10 +77,10 @@ class RegisterController extends Controller
             'school_year' => $data['school_year'],
             'password' => Hash::make($data['password']),
         ]);
-        if ($data['type'] == User::TYPE_ALUMNI) {
-            $course = Course::whereName($data['course'])->first();
-            UserCourse::create(['user_id' => $user->id, 'course_id' => $course->id]);
-        }
+        // if ($data['type'] == User::TYPE_ALUMNI) {
+        //     $course = Course::whereName($data['course'])->first();
+        //     UserCourse::create(['user_id' => $user->id, 'course_id' => $course->id]);
+        // }
         return $user;
     }
 }

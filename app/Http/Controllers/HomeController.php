@@ -23,6 +23,17 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->status == 'for_review') {
+            alert()->error('Your account is not yet approved by administrator.'); 
+            auth()->logout(); 
+            return redirect()->to(route('login')); 
+        }
+
+        if (auth()->user()->status == 'rejected') {
+            alert()->error('The Administrator does not allow you to access the application.'); 
+            auth()->logout(); 
+            return redirect()->to(route('login')); 
+        }
         return view('home');
     }
 }

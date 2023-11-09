@@ -18,6 +18,7 @@ class AdminSeeder extends Seeder
             'email' => 'super@admin.com',
             'password' => bcrypt('password'),
             'name' => 'administrator',
+            'status' => 'active', 
             'type' => User::TYPE_ADMIN,
         ]);
     }

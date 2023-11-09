@@ -17,6 +17,8 @@ class Donation extends Model
         'year_donated',
         'mop',
         'description',
+        'created_at',
+        'updated_at', 
     ];
 
     public function user()

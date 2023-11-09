@@ -20,6 +20,10 @@
                 <div class="text-lg font-bold uppercase bg-red-200 px-4 rounded inline-block">{{$item->type}}</div>
                 <h1 class="text-lg">Title: {{$item->title}}</h1>
                 <h2 class="border-2 p-2 my-4">Descriptions: {{$item->description }}</h2>
+                @if ($item->user_id == auth()->id())
+                    <a href="/posts/edit/{{$item->id}}" class="underline text-red-900 font-bold mx-4">Edit Post</a> 
+                    <a href="/posts/delete-confirm/{{$item->id}}" class="underline text-red-600 font-bold mx-4">Delete Post</a>
+                @endif
             </div>
         </div>
     @empty

@@ -12,6 +12,33 @@ class CourseController extends Controller
     {
         return view('view-steps', compact('step'));
     }
+
+    public function edit(Request $request, Course $course) {
+        return view('courses.edit', compact('course')); 
+    }
+    public function deleteConfirm(Request $request, Course $course) {
+        return view('courses.deleteConfirm', compact('course')); 
+    }
+
+    public function update(Request $request, Course $course) {
+
+        $data = $request->validate([
+            'name' => 'required',
+            'descriptions' => 'required',
+        ]);
+
+        $course->update($data);
+
+        alert()->success('Success', 'Course Successfully updated!!');
+        return redirect()->to('/courses/');
+    }
+
+    public function destroy(Request $request, Course $course) {
+        Step::whereCourseId($course->id)->delete(); 
+        $course->delete(); 
+        alert()->success('Success', 'Course has been deleted!');
+        return redirect()->to('/courses/');
+    }
     public function removeStep(Request $request, Step $step)
     {
         $step->delete();

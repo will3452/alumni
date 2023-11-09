@@ -1,11 +1,11 @@
-<div class="flex items-center justify-between p-4  m-4 border-2 rounded-xl bg-white">
+<div class="flex items-center justify-between p-4  m-4 border-2 rounded-xl" style="background: #800000">
     <div class="flex items-center">
-        <img src="" alt="" class="w-8 h-8 bg-black rounded-full" />
+        <img src="/user.jpeg" alt="" class="w-8 h-8 bg-black rounded-full" />
         @auth
             <div>
-                <h1 class="uppercase mx-2 text-sm font-bold text-gray-400">{{ auth()->user()->name}}</h1>
+                <h1 class="uppercase mx-2 text-sm font-bold text-yellow-300">{{ auth()->user()->name}}</h1>
                 <div class="mx-2 font-bold">
-                    <small>
+                    <small class="text-white">
                         {{auth()->user()->type}}
                     </small>
                 </div>

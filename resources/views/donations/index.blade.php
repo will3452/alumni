@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="flex items-start justify-between">
-        <div class="relative w-full md:w-1/4 shadow-xl border-2 border-pink-500 rounded">
+        <div class="relative w-full md:w-1/4 shadow-xl border-2 border-pink-500 rounded bg-white">
             <div class="relative  rounded inline-block p-2 -top-5 left-5 bg-pink-500 text-white">
                 Total Donations
             </div>

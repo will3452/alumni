@@ -21,6 +21,9 @@
                         type
                     </th>
                     <th>
+                        status
+                    </th>
+                    <th>
                         Action
                     </th>
                 </tr>
@@ -35,9 +38,30 @@
                         {{$user->type}}
                     </td>
                     <td>
-                        <a class="p-1 uppercase bg-pink-500 rounded text-white text-sm cursor-pointer">Approve</a>
-                        <a class="p-1 uppercase bg-red-500 rounded text-white text-sm cursor-pointer">Reject</a>
-                        <a class="p-1 uppercase bg-blue-500 rounded text-white text-sm cursor-pointer">View Profile</a>
+                        @if ($user->status == 'for_review')
+                            FOR REVIEW
+                        @endif
+
+                        @if ($user->status == 'active')
+                            ACTIVE
+                        @endif
+
+                        @if ($user->status == 'rejected')
+                            BLOCKED
+                        @endif
+                    </td>
+                    <td>
+                        @if ($user->status == 'for_review')
+                            <a class="p-1 uppercase bg-pink-500 rounded text-white text-sm cursor-pointer" href="/approve/{{$user->id}}">ALLOW</a>
+                            <a class="p-1 uppercase bg-red-500 rounded text-white text-sm cursor-pointer"  href="/reject/{{$user->id}}">DENY</a>
+                        @endif
+                        @if ($user->status == 'active')
+                            <a class="p-1 uppercase bg-blue-500 rounded text-white text-sm cursor-pointer" href="/alumni/profile/{{$user->id}}">VIEW</a>
+                            <a class="p-1 uppercase bg-red-500 rounded text-white text-sm cursor-pointer"  href="/reject/{{$user->id}}">BLOCK</a>
+                        @endif
+                        @if ($user->status == 'rejected')
+                            <a class="p-1 uppercase bg-pink-500 rounded text-white text-sm cursor-pointer" href="/approve/{{$user->id}}">ALLOW</a>
+                        @endif
                     </td>
                 </tr>
                 @endforeach

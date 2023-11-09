@@ -29,8 +29,14 @@
                         {{$course->name}}
                     </td>
                     <td>
-                        <a href="/courses/{{$course->id}}" class="bg-pink-500 p-1 px-2 rounded text-white uppercase">
-                            View
+                        <a href="/courses/{{$course->id}}" class="bg-blue-500 mx-2 text-sm p-1 rounded text-white uppercase">
+                            VIEW
+                        </a>
+                        <a href="/courses/edit/{{$course->id}}" class="bg-red-900 mx-2 text-sm p-1 rounded text-white uppercase">
+                            EDIT
+                        </a>
+                        <a href="/courses/delete-confirm/{{$course->id}}" class="bg-red-500 mx-2 text-sm p-1 rounded text-white uppercase">
+                            DELETE
                         </a>
                     </td>
                 </tr>

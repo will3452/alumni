@@ -10,6 +10,7 @@
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
 </head>
 <body class="bg-gray-200">
+  @include('sweetalert::alert')
     @yield('content')
 </body>
 </html>

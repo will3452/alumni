@@ -8,6 +8,7 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="bg-gray-200">
     @include('sweetalert::alert')
@@ -28,7 +29,7 @@
             <x-student-sidebar></x-student-sidebar>
         @endif
 
-        <div class="w-3/4">
+        <div class="w-4/5">
             <x-top-bar></x-top-bar>
 
             <div class="p-4">

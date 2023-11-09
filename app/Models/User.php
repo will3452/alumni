@@ -27,6 +27,7 @@ class User extends Authenticatable
         'type',
         'descriptions',
         'skills',
+        'status', 
     ];
 
     const TYPE_STUDENT = 'Student';
@@ -56,5 +57,13 @@ class User extends Authenticatable
     public function donations()
     {
         return $this->hasMany(Donation::class, 'user_id');
+    }
+
+    public function goals () {
+        return $this->belongsToMany(Course::class, 'user_courses', 'user_id', 'course_id'); 
+    }
+
+    public function isDone($stepId) {
+        return DoneStep::whereUserId($this->id)->whereStepId($stepId)->exists(); 
     }
 }

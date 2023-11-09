@@ -6,8 +6,12 @@
     <div class="text-center text-2xl font-mono font-bold p-10">
         Step {{$step->sq}}
     </div>
+    <div class="flex justify-between">
+        <a href="/home" class="p-2 border-2 rounded-xl shadow-lg ml-4 text-xl"> <span class="font-bold">&lt; </span>BACK</a>
+        <a href="/done/{{$step->id}}" class="p-2 border-2 rounded-xl shadow-lg mr-4 text-xl"> <span class="font-bold"> </span>DONE</a>
+    </div>
     <div class="flex w-full">
-        <div class="w-2/3 bg-gray-100 p-4 m-4 bg-opacity-80">
+        <div class="w-2/3 bg-gray-100 p-4 m-4 ">
             <h1 class="text-xl font-bold font-mono text-center mb-2">Step Requirements</h1>
             @foreach (explode(',', $step->requirements) as $item)
                 <div class="font-mono p-2 rounded bg-white font-bold mb-2 border-dashed border-2 bg-opacity-5">
