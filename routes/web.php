@@ -15,6 +15,8 @@ use App\Http\Controllers\DonationController;
 use App\Models\DoneStep;
 use App\Models\Step;
 use App\Models\UserCourse;
+use App\Models\UserStep;
+use App\Notifications\UserStepsApproval;
 use Maatwebsite\Excel\Facades\Excel;
 
 /*
@@ -159,3 +161,31 @@ Route::get('/exports', function (Request $request) {
     if ($request->type == 'DONATION') return Excel::download(new DonationsExport, 'donations.xlsx'); 
     if ($request->type == 'COURSE') return Excel::download(new CourseExport, 'courses.xlsx'); 
 });
+
+Route::post('/submit-user-step/{userStep}', function (UserStep $userStep) {
+    $userStep->update(['status' => 'APPROVED']);
+
+    alert()->success('Success', 'Approved!'); 
+
+    return back(); 
+}); 
+
+Route::post('/submit-user-step', function (Request $request) {
+    $data = $request->validate([
+        'user_id' => ['required'], 
+        'step_id' => ['required'],
+        'file' => ['required'],
+    ]); 
+
+    $data['file'] = $data['file']->store('public'); 
+    UserStep::create($data); 
+    alert()->success('Success', 'Your attachment has been uploaded.'); 
+
+    $admins = User::whereType('Administrator')->get(); 
+
+    foreach($admins as $admin) {
+        $admin->notify(new UserStepsApproval($data['user_id'])); 
+    }
+
+    return back(); 
+})->middleware(['auth']); 

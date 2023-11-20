@@ -74,6 +74,7 @@ class CourseController extends Controller
         $data = $request->validate([
             'requirements' => 'required',
             'descriptions' => 'required',
+            'jobs' => 'required', 
             'sq' => 'required',
             'course_id' => 'required',
         ]);

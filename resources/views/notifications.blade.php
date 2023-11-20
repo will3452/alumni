@@ -26,7 +26,7 @@
                 @foreach (auth()->user()->notifications as $n)
                 <tr>
                     <td>
-                        {{$n->data['message']}}
+                        {!!$n->data['message']!!}
                     </td>
                     <td>
                         {{$n->created_at}}

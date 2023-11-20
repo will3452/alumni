@@ -28,7 +28,7 @@
        <form action="/set-goal" method="POST" x-data='{courseId: "", courses:{!!\App\Models\Course::get()!!}  }' class="mt-4 p-4  rounded-lg bg-white bg-opacity-90 border-2 border-gray-500 inline-block w-full md:w-1/2">
             @csrf
                 <select name="course_id" id="" class="w-full rounded border-2 p-2" x-on:change="(e) => courseId = e.target.value">
-                    <option value="" selected disabled class="bg-gray-200">SELECT COURSE</option>
+                    <option value="" selected disabled class="bg-gray-200">SELECT GOAL</option>
                     @foreach (\App\Models\Course::get() as $course)
                         <option value="{{$course->id}}">
                             {{$course->name}}

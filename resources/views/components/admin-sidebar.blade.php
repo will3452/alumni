@@ -13,8 +13,11 @@
     <a href="{{route('admin.donation.index')}}" class="block bg-pink-500 relative w-full  z-10 p-2 rounded text-pink-100 mb-4">
         Manage Donations
     </a>
+    <a href="/notifications" class="block bg-pink-500 p-2 rounded text-pink-100 mb-4  relative w-full  z-10">
+        Notifications
+    </a>
     <a href="/courses" class="block bg-pink-500 p-2 rounded relative w-full  z-10  text-pink-100 mb-4 ">
-        Manage Courses
+        Manage Goals
     </a>
     <a href="{{route('alumni.profile.show', ['user' => auth()->id()])}}" class="relative w-full z-10 block bg-pink-500 p-2 rounded text-pink-100 mb-4">
         Manage Profile

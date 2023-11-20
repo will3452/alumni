@@ -1,0 +1,23 @@
+
+:root {
+    --primary-color: #991111; 
+}
+.bg-pink-500, .custom-pink {
+    background: var(--primary-color) !important; 
+}
+
+.text-pink-500 {
+    color: var(--primary-color) !important; 
+}
+
+.bg-gray-200 {
+    background: #e0982b !important; 
+}
+
+.border-t-pink-500 {
+    border-top-color: var(--primary-color) !important; 
+}
+
+.border-pink-500 {
+    border-color: var(--primary-color) !important; 
+}

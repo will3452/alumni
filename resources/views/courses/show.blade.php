@@ -25,10 +25,13 @@
                         <input type="number" value="{{count($course->steps) + 1}}" required name="sq" class="w-full border-2  mb-2 p-2 rounded-lg">
                         <label for="" class="block font-bold mt-4 mb-2">Requirements</label>
                         <input type="text" required name="requirements" placeholder="Separated by comma (,) eg., Learn algebra, Learn Programming, Start a project." class="w-full border-2  mb-2 p-2 rounded-lg">
-                    </div>
-                    <div class="w-1/3 px-2">
+                        
                         <label for="" class="block font-bold mt-4 mb-2">Description</label>
                         <textarea required name="descriptions" class="w-full border-2 rounded h-32 p-2" placeholder="Aa"></textarea>
+                    </div>
+                    <div class="w-1/3 px-2 h-full">
+                        <label for="" class="block font-bold mt-4 mb-2">Career Recommendation</label>
+                        <textarea required name="jobs" class="w-full border-2 rounded h-32 p-2" placeholder="Aa"></textarea>
                     </div>
                 </div>
                 <button type="submit" class="p-2 bg-pink-500 text-white rounded font-bold mt-2">

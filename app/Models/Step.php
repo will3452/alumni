@@ -14,5 +14,6 @@ class Step extends Model
         'requirements',
         'descriptions',
         'sq',
+        'jobs', 
     ];
 }

@@ -37,7 +37,7 @@
             </a>
         @endif
 
-        <button type="submit" class="w-full p-2 font-bold text-white bg-pink-500 rounded-xl my-4">
+        <button  type="submit" class="bg-pink-500 w-full p-2 font-bold text-white rounded-xl my-4">
             {{ __('Login') }}
         </button>
 

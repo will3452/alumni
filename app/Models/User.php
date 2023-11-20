@@ -66,4 +66,16 @@ class User extends Authenticatable
     public function isDone($stepId) {
         return DoneStep::whereUserId($this->id)->whereStepId($stepId)->exists(); 
     }
+
+    public function userSteps() {
+        return $this->hasMany(UserStep::class, 'user_id'); 
+    }
+
+    public function hasSubmittedRequirements($stepId) {
+        return $this->userSteps()->whereStepId($stepId)->exists(); 
+    }
+
+    public function hasApprovedRequirements($stepId) {
+        return $this->userSteps()->whereStepId($stepId)->whereStatus('APPROVED')->exists(); 
+    }
 }
