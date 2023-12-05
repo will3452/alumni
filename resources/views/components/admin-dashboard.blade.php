@@ -13,7 +13,7 @@
       </div>
       <div class="ml-2 relative w-full md:w-3/4 shadow-xl border-2 border-pink-500 rounded">
         <div class="relative  rounded inline-block p-2 -top-5 left-5 bg-pink-500 text-white">
-            Downlable Reports
+            Downloable Reports
         </div>
         <br>
         <div class="p-2 flex">

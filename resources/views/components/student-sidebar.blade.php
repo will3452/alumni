@@ -7,9 +7,9 @@
     <a href="/home" class="block bg-pink-500 p-2 rounded text-pink-100 mb-4">
         Dashboard
     </a>
-    <a href="/notifications" class="block bg-pink-500 p-2 rounded text-pink-100 mb-4">
+    {{-- <a href="/notifications" class="block bg-pink-500 p-2 rounded text-pink-100 mb-4">
         Notifications
-    </a>
+    </a> --}}
     {{-- <a href="/browse-alumni" class="block bg-pink-500 p-2 rounded text-pink-100 mb-4">
         Browse Alumni
     </a> --}}

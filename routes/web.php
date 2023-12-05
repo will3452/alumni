@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DonationController;
+use App\Models\CareerProgress;
 use App\Models\DoneStep;
 use App\Models\Step;
 use App\Models\UserCourse;
@@ -189,3 +190,27 @@ Route::post('/submit-user-step', function (Request $request) {
 
     return back(); 
 })->middleware(['auth']); 
+
+Route::get('/set-goal', function () {
+    return view('goals'); 
+}); 
+
+Route::get('/add-progress', function () {
+    return view('progress'); 
+}); 
+
+Route::post('/add-progress', function (Request $request) {
+    $data = $request->validate([
+        'year' => 'required',
+        'type' => 'required',
+        'company' => '',
+        'school' => '',
+        'job' => '',
+        'level' => '',
+        'salary' => '', 
+    ]);
+    $data['user_id'] = auth()->id(); 
+    CareerProgress::create($data);
+    alert()->success('Success', 'Career progress added!'); 
+    return back(); 
+}); 

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="bg-white rounded relative" style="height: 78vh; background: url('/trajectory.png') #fff; background-size: cover; ">
+<div class="bg-white rounded relative" style="height: 78vh;background-size: cover; ">
     @if (! auth()->user()->hasSubmittedRequirements($step->id))
         <form action="/submit-user-step" enctype="multipart/form-data" method="POST" class="font-bold uppercase font-mono absolute right-0 p-2">
             @csrf
