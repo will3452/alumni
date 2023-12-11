@@ -10,6 +10,9 @@
     <a href="/news" class="block bg-pink-500 p-2 rounded text-pink-100 mb-4  relative w-full  z-10">
         Post News and Job Offers
     </a>
+    <a href="/add-progress" class="block bg-pink-500 p-2 rounded text-pink-100 mb-4  relative w-full  z-10">
+        Add Progress
+    </a>
     <a href="/notifications" class="block bg-pink-500 p-2 rounded text-pink-100 mb-4  relative w-full  z-10">
         Notifications
     </a>
@@ -20,5 +23,5 @@
         Profile
     </a>
 
-    <img src="/sidebar.png" alt="" class="absolute -bottom-5 z-0 absolute">
+    <img src="/sidebar.png"  alt="" class="z-0 fixed -bottom-5" style="width: 300px;">
 </div>

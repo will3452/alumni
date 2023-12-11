@@ -16,27 +16,39 @@
                 <p>Vizualizagion goes here.</p>
             </canvas>
         </div>
+
+        <div>
+            <canvas id="don" width="400" height="100">
+                <p>Vizualizagion goes here.</p>
+            </canvas>
+        </div>
     </div>
 </div>
 
-<script>
-    let ctx = document.getElementById('viz')
 
-    const labels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    const data = {
+<script>
+    let ctxc = document.getElementById('viz')
+    const levels = {
+        'Mid': 1,
+        'Junior': 2,
+        'Senior': 3, 
+    }
+    const labels = @json(\App\Models\CareerProgress::whereType('Career')->whereUserId(auth()->id())->get()->pluck('year')) 
+    const datax = {
     labels: labels,
     datasets: [
         {
             label: 'Career Progress',
-            data: @json(\App\Models\CareerProgress::whereType('Career')->whereUserId(auth()->id())->get()->pluck('salary')),
+            data: @json(\App\Models\CareerProgress::whereType('Career')->whereUserId(auth()->id())->get()->pluck('level')).map(e => levels[e]),
             fill: true,
         },
     ]
     };
-    const config = {
+    const configx = {
         type: 'line',
-        data: data,
+        data: datax,
     };
 
-    new Chart(ctx, config)
+    new Chart(ctxc, configx)
 </script>
+<x-chart></x-chart>

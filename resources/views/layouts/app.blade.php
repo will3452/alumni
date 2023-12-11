@@ -31,7 +31,7 @@
             <x-student-sidebar></x-student-sidebar>
         @endif
 
-        <div class="w-4/5">
+        <div class="w-4/5 h-screen overflow-y-scroll">
             <x-top-bar></x-top-bar>
 
             <div class="p-4">

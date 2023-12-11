@@ -9,11 +9,7 @@
                 <label for="" class="block font-bold uppercase">Year</label>
                 <input type="number" name="year" class="border-2 p-2 w-full">
             </div>
-            <div class="w-1/3 p-2">
-                <label for="" class="block font-bold uppercase">Type</label>
-                <label for=""><span>Career</span> <input type="radio" value="career" name="type"></label>
-                <label for=""><span>Academic</span> <input type="radio" value="academic" name="type"></label>
-            </div>
+            <input type="hidden" name="type" value="career" />
             <div class="w-1/3 p-2">
                 <label for="" class="block font-bold uppercase">Company</label>
                 <input type="text" name="company" class="border-2 p-2 w-full">

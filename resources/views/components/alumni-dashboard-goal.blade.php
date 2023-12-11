@@ -4,6 +4,7 @@
     </div>
     <div class="p-4  rounded absolute overflow-y-hidden w-full top-0" style="height: 80vh; background-size: cover; ">
         <a href="/home" class="font-bold">BACK TO HOME</a>
+        <div></div>
         @if (auth()->user()->goals()->count() == 0)
         <form action="/set-goal" method="POST" x-data='{courseId: "", courses:{!!\App\Models\Course::get()!!}  }' class="mt-4 p-4  rounded-lg bg-white bg-opacity-90 shadow-xl border-gray-500 inline-block w-full md:w-1/2">
              @csrf

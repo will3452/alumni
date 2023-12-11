@@ -23,5 +23,5 @@
         Manage Profile
     </a>
 
-    <img src="/sidebar.png"  alt="" class="z-0 absolute -bottom-5">
+    <img src="/sidebar.png"  alt="" class="z-0 fixed -bottom-5" style="width: 300px;">
 </div>

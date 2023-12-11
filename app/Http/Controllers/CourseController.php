@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Step;
+use App\Services\CompletionService;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -28,6 +29,7 @@ class CourseController extends Controller
         ]);
 
         $course->update($data);
+
 
         alert()->success('Success', 'Course Successfully updated!!');
         return redirect()->to('/courses/');
@@ -63,8 +65,21 @@ class CourseController extends Controller
             'descriptions' => 'required',
         ]);
 
-        Course::create($data);
+        $course = Course::create($data);
 
+        
+        $steps = CompletionService::getSteps($course->name); 
+
+
+       for($i = 0; $i < count($steps); $i++) {
+            Step::create([
+                'course_id' => $course->id, 
+                'requirements' => '',
+                'descriptions' => $steps[$i],
+                'sq' => $i+1, 
+                'jobs' => '', 
+            ]);
+       }
         alert()->success('Success', 'Course Successfully created!');
         return redirect()->to('/courses/');
     }
