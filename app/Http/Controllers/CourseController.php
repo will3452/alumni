@@ -68,16 +68,16 @@ class CourseController extends Controller
         $course = Course::create($data);
 
         
-        $steps = CompletionService::getSteps($course->name); 
+        $result = CompletionService::getSteps($course->name); 
 
 
-       for($i = 0; $i < count($steps); $i++) {
+       for($i = 0; $i < count($result['steps']); $i++) {
             Step::create([
                 'course_id' => $course->id, 
                 'requirements' => '',
-                'descriptions' => $steps[$i],
+                'descriptions' => $result['steps'][$i],
                 'sq' => $i+1, 
-                'jobs' => '', 
+                'jobs' => $result['jobs'][$i], 
             ]);
        }
         alert()->success('Success', 'Course Successfully created!');
