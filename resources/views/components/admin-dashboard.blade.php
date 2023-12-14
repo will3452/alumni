@@ -17,9 +17,10 @@
         </div>
         <br>
         <div class="p-2 flex">
-          <a href="/exports?type=USER" class="bg-white block px-2 py-1 text-red-900  rounded-xl shadow-xl flex border-2 mx-4 font-bold items-center"> <img class="w-8" src="/download.gif" alt=""> User Masterlist</a>
-          <a href="/exports?type=DONATION" class="bg-white block px-2 py-1 text-red-900  rounded-xl shadow-xl flex border-2 mx-4 font-bold items-center"> <img class="w-8" src="/download.gif" alt=""> Donations</a>
-          <a href="/exports?type=COURSE" class="bg-white block px-2 py-1 text-red-900  rounded-xl shadow-xl flex border-2 mx-4 font-bold items-center"> <img class="w-8" src="/download.gif" alt=""> Course Masterlist</a>
+          <a href="/exports?type=USER" class="bg-white block px-2 py-1 text-red-900  rounded-xl shadow-xl flex border-2 mx-4 font-bold items-center text-sm"> <img class="w-8" src="/download.gif" alt=""> User Masterlist</a>
+          <a href="/exports?type=DONATION" class="bg-white block px-2 py-1 text-red-900  rounded-xl shadow-xl flex border-2 mx-4 font-bold items-center text-sm"> <img class="w-8" src="/download.gif" alt=""> Donations</a>
+          <a href="/exports?type=COURSE" class="bg-white block px-2 py-1 text-red-900  rounded-xl shadow-xl flex border-2 mx-4 font-bold items-center text-sm"> <img class="w-8" src="/download.gif" alt=""> Course Masterlist</a>
+          <a href="/exports?type=ALUMNI" class="bg-white block px-2 py-1 text-red-900  rounded-xl shadow-xl flex border-2 mx-4 font-bold items-center text-sm"> <img class="w-8" src="/download.gif" alt=""> Alumni Data</a>
         </div>
     </div>
     </div>

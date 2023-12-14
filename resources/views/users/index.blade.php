@@ -14,6 +14,7 @@
         <table id="table">
             <thead>
                 <tr>
+                    <th>No.</th>
                     <th>
                         Name
                     </th>
@@ -32,35 +33,38 @@
                 @foreach ($users as $user)
                 <tr>
                     <td>
-                        {{$user->name}}
+                        {{$user['no']}}
                     </td>
                     <td>
-                        {{$user->type}}
+                        {{$user['name']}}
                     </td>
                     <td>
-                        @if ($user->status == 'for_review')
+                        {{$user['type']}}
+                    </td>
+                    <td>
+                        @if ($user['status'] == 'for_review')
                             FOR REVIEW
                         @endif
 
-                        @if ($user->status == 'active')
+                        @if ($user['status'] == 'active')
                             ACTIVE
                         @endif
 
-                        @if ($user->status == 'rejected')
+                        @if ($user['status'] == 'rejected')
                             BLOCKED
                         @endif
                     </td>
                     <td>
-                        @if ($user->status == 'for_review')
-                            <a class="p-1 uppercase bg-pink-500 rounded text-white text-sm cursor-pointer" href="/approve/{{$user->id}}">ALLOW</a>
-                            <a class="p-1 uppercase bg-red-500 rounded text-white text-sm cursor-pointer"  href="/reject/{{$user->id}}">DENY</a>
+                        @if ($user['status'] == 'for_review')
+                            <a class="p-1 uppercase bg-pink-500 rounded text-white text-sm cursor-pointer" href="/approve/{{$user['id']}}">ALLOW</a>
+                            <a class="p-1 uppercase bg-red-500 rounded text-white text-sm cursor-pointer"  href="/reject/{{$user['id']}}">DENY</a>
                         @endif
-                        @if ($user->status == 'active')
-                            <a class="p-1 uppercase bg-blue-500 rounded text-white text-sm cursor-pointer" href="/alumni/profile/{{$user->id}}">VIEW</a>
-                            <a class="p-1 uppercase bg-red-500 rounded text-white text-sm cursor-pointer"  href="/reject/{{$user->id}}">BLOCK</a>
+                        @if ($user['status'] == 'active')
+                            <a class="p-1 uppercase bg-blue-500 rounded text-white text-sm cursor-pointer" href="/alumni/profile/{{$user['id']}}">VIEW</a>
+                            <a class="p-1 uppercase bg-red-500 rounded text-white text-sm cursor-pointer"  href="/reject/{{$user['id']}}">BLOCK</a>
                         @endif
-                        @if ($user->status == 'rejected')
-                            <a class="p-1 uppercase bg-pink-500 rounded text-white text-sm cursor-pointer" href="/approve/{{$user->id}}">ALLOW</a>
+                        @if ($user['status'] == 'rejected')
+                            <a class="p-1 uppercase bg-pink-500 rounded text-white text-sm cursor-pointer" href="/approve/{{$user['id']}}">ALLOW</a>
                         @endif
                     </td>
                 </tr>
