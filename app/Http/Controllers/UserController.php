@@ -19,7 +19,7 @@ class UserController extends Controller
                 'type' => $user->type, 
                 'status' => $user->status, 
                 'no' => $key + 1, 
-                'id' => $user->id, 
+                'id' => $user->id,  
             ];
         }); 
 

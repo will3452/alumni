@@ -162,7 +162,7 @@ Route::get('/exports', function (Request $request) {
     if ($request->type == 'USER') return Excel::download(new UsersExport, 'users.xlsx'); 
     if ($request->type == 'DONATION') return Excel::download(new DonationsExport, 'donations.xlsx'); 
     if ($request->type == 'COURSE') return Excel::download(new CourseExport, 'courses.xlsx'); 
-    if($request->type == 'ALUMNI') return Excel::download(new CareerProgressExport(), 'alumnidata.xlsx'); 
+    if($request->type == 'ALUMNI') return Excel::download(new CareerProgressExport($request->only ?? null), 'alumnidata.xlsx'); 
 });
 
 Route::post('/submit-user-step/{userStep}', function (UserStep $userStep) {

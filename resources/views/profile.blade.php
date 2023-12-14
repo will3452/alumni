@@ -14,6 +14,9 @@
                 <div class="text-xs mt-2 block p-2 border-2 rounded-lg font-bold">
                     {{ $user->school_year}}
                 </div>
+                <a href="/exports?type=ALUMNI&only={{$user->id}}" class="bg-red-900 text-white p-2 rounded-xl inline-block mt-4 font-bold">
+                    DOWNLOAD DATA
+                </a>
             </div>
         </div>
         @if (auth()->id() == $user->id)
